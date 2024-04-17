@@ -1,0 +1,9 @@
+NAME: map1 {
+	obj[5]{
+		id = 5;
+		vector2 = 5, 6;
+	};
+
+
+	class
+}

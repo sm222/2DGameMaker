@@ -27,6 +27,9 @@ feture:
 		velocity
 		rotation and potition
 		texture
+	
+	smiple obj:
+		?
 
 	input:
 		premade keybord layout that can be edit
