@@ -31,6 +31,7 @@ class Object{
 		bool				_image_xFlip;	//horizontal flip of the image
 		bool				_image_yFlip;	//vertical flip of the image
 	private:
+		renderValue			_out;
 		void coreStep();
 		void step();
 		void draw();

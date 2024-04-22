@@ -19,7 +19,7 @@ using std::map;
 
 // C define
 #define VEC2(x,y)   (Vector2){x, y}
-#define MAX_CANVAS  100
+#define MAX_CANVAS  10
 #define MAX_LAYER   100
 #define DEF_CAM     Camera2D{VEC2(0,0),VEC2(0,0), 0, 0}
 
@@ -30,10 +30,12 @@ using std::map;
 
 // sould be conpatible on C
 struct renderValue {
-    bool            _visible;
-    Vector2         _pos;
-    Texture        *_texture;
-
+    bool                visible;
+    bool                _rander;
+    Vector2             *pos;
+    Texture             *texture;
+    unsigned int        depth;
+    unsigned long long  _id;
 };
 
 // sould be conpatible on C
@@ -56,6 +58,7 @@ class Room {
         renderValue                 _rv;
         map<string, unsigned int>   _layerName;
         Canvas                      *canvasList[MAX_CANVAS + 1];
+
     public:
         //ft
         Room(string name);
