@@ -9,7 +9,6 @@
 # define __EX__NOT_USE
 
 #include <stdint.h>
-
 #include <raylib.h>
 #include <string>
 #include <map>
