@@ -30,7 +30,7 @@ struct Canvas {
     size_t          _SizeG[MAX_LAYER + 1];
     // UI           //
     size_t          _YU;
-	size_t          _XU;
+    size_t          _XU;
     size_t          _SizeU[MAX_LAYER + 1];
     RenderValue**   _Ui;
 };
