@@ -67,8 +67,10 @@ struct exampleH {
 
 // !you shoud not mix (define, enum, struct) and fonctions
 
-int       example_int(void);
-void      example_void(void);
-double    example_double(void);
+int         example_int(void);
+void        example_void(void);
+double      example_double(void);
+e_example   example_custum(void);
+ssize_t     example_var_edit(char c, char* s);
 
 #endif
