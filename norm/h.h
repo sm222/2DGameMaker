@@ -23,11 +23,11 @@
 
 // only set manualy if you go in negativ value
 
-typedef enum example {
-  e_example1,
-  e_example2,
-  e_example3,
-} e_example;
+typedef enum Example {
+  e_Example1,
+  e_Example2,
+  e_Example3,
+} e_Example;
 
 //*--------------*//
 //*    define    *//
@@ -51,13 +51,13 @@ typedef enum example {
 //*     struct     *//
 //*----------------*//
 
-struct exampleH {
-  int        i;
-  char       c;
-  float      f;
-  double     d;
-  char*      msg;
-  exampleH*  next;
+struct ExampleH {
+  int               i;
+  char              c;
+  float             f;
+  double            d;
+  char*             msg;
+  struct ExampleH*  next;
 };
 
 
@@ -70,7 +70,7 @@ struct exampleH {
 int         example_int(void);
 void        example_void(void);
 double      example_double(void);
-e_example   example_custum(void);
+e_Example   example_custum(void);
 ssize_t     example_var_edit(char c, char* s);
 
 #endif

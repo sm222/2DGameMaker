@@ -22,17 +22,17 @@ struct RenderValue {
 };
 
 struct Canvas {
-    // GAME         //
-    Camera2D*       _Camera;
-    size_t          _YG;
-    size_t          _XG;
-    RenderValue**   _Game;
-    size_t          _SizeG[MAX_LAYER + 1];
-    // UI           //
-    size_t          _YU;
-    size_t          _XU;
-    size_t          _SizeU[MAX_LAYER + 1];
-    RenderValue**   _Ui;
+    // GAME                //
+    Camera2D*              _Camera;
+    size_t                 _YG;
+    size_t                 _XG;
+    struct RenderValue**   _Game;
+    size_t                 _SizeG[MAX_LAYER + 1];
+    // UI                  //
+    size_t                 _YU;
+    size_t                 _XU;
+    size_t                 _SizeU[MAX_LAYER + 1];
+    struct RenderValue**   _Ui;
 };
 
 #endif // CDEFINE_H

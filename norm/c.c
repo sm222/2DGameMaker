@@ -22,18 +22,18 @@ double      example_double(void) {
 }
 
 
-e_example   example_custum(void) {
-  __int32_t i = e_example1 % EXAMPLE_INT;
+e_Example   example_custum(void) {
+  __int32_t i = e_Example1 % EXAMPLE_INT;
 
   switch (i)
   {
-  case e_example2:
+  case e_Example2:
     printf("%s\n", EXAMPLE_CHAR);
     break;
   default:
     break;
   }
-  return e_example3;
+  return e_Example3;
 }
 
 
