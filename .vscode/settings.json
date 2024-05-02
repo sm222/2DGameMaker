@@ -59,6 +59,7 @@
   "files.associations": {
     "*.ms": "shellscript",
     "cstdint": "cpp",
-    "string": "cpp"
+    "string": "cpp",
+    "wordsize.h": "c"
   }
 }

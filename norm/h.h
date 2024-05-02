@@ -56,8 +56,9 @@ struct ExampleH {
   char              c;
   float             f;
   double            d;
-  char*             msg;
-  struct ExampleH*  next;
+  char*             Msg;
+  struct ExampleH*  Next;
+  char*             ObjName;
 };
 
 
