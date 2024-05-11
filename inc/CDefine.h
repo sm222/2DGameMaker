@@ -7,6 +7,8 @@
 
 // C - define
 
+//
+
 # define MAX_CANVAS  10
 # define MAX_LAYER   100
 # define VEC2(x,y)   (Vector2){x, y}
@@ -14,7 +16,7 @@
 
 struct RenderValue {
     bool                 Visible;
-    bool                _Rander;
+    bool                _Render;
     Vector2*             Pos;
     Texture*             Texture;
     unsigned int         Depth;
