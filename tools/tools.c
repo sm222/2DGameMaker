@@ -8,7 +8,7 @@ static int  size_of_unb(unsigned long long nb, int base) {
     size++;
     nb /= base;
   }
-  return (size);
+  return size;
 }
 
 char  *ft_ulltoa(unsigned long long nb, int base, char *out) {
@@ -22,7 +22,7 @@ char  *ft_ulltoa(unsigned long long nb, int base, char *out) {
     out[i] = HEX_TABLE[nb % base];
     nb /= base;
   }
-  return (out);
+  return out;
 }
 
 static int  num_s(int n) {
@@ -30,7 +30,7 @@ static int  num_s(int n) {
 
   i = 1;
   if (n == -2147483648)
-    return (11);
+    return 11;
   else if (n < 0) {
     n = n * -1;
     i++;
@@ -39,7 +39,7 @@ static int  num_s(int n) {
     n = n / 10;
     i++;
   }
-  return (i);
+  return i;
 }
 
 static void set_str(char *s, int i, int long n) {
@@ -60,7 +60,7 @@ static char	*ft_itoa(int n, char* buff) {
   set_str(buff, num_s(n) - 1, temp);
   if (n < 0)
     buff[0] = '-';
-  return (buff);
+  return buff;
 }
 
 
@@ -69,7 +69,7 @@ static void set_time_buff(char buff[TMP_BUFF_SIZE]) {
   struct tm* timeinfo;
   time(&rawtime);
   timeinfo = localtime(&rawtime);
-  memcpy(buff, asctime(timeinfo), TMP_BUFF_SIZE - 6);
+  memcpy(buff, asctime(timeinfo) + 11, TMP_BUFF_SIZE - (22));
 }
 
 static int	print_select(va_list *list, char c, char *buff, char** ref, char* color)
@@ -87,7 +87,7 @@ static int	print_select(va_list *list, char c, char *buff, char** ref, char* col
     s = va_arg(*list, char *);
     if (!s) {
       memcpy(buff, "(null)", 7);
-      return (6);
+      return 6;
     }
     *ref = s;
     return (strlen(s));
@@ -101,7 +101,7 @@ static int	print_select(va_list *list, char c, char *buff, char** ref, char* col
     nb = (va_arg(*list, int));
     buff[0] = nb;
     buff[1] = 0;
-    return (1);
+    return 1;
   }
   else if (c == 'p') {
     ft_ulltoa(va_arg(*list, unsigned long), 16, buff + 2);
@@ -110,7 +110,7 @@ static int	print_select(va_list *list, char c, char *buff, char** ref, char* col
   }
   else if (c == '%') {
     memcpy(buff, "%", 2);
-    return (1);
+    return 1;
   }
   else if (c == 'x') {
     ft_ulltoa(va_arg(*list, unsigned long), 16, buff);
@@ -127,7 +127,7 @@ static int	print_select(va_list *list, char c, char *buff, char** ref, char* col
   else if (c == 'F') {
     s = va_arg(*list, char *);
     if (!s) {
-      return (0);
+      return 0;
     }
     *ref = s;
   }
@@ -135,25 +135,27 @@ static int	print_select(va_list *list, char c, char *buff, char** ref, char* col
     set_time_buff(buff);
     return (strlen(buff));
   }
-  return (0);
+  return 0;
 }
 
 
 static short add_buff(char* arg, t_buff* buff) {
   if (!buff->str) {
     buff->str = calloc(SIZE_BUFF + 1, sizeof(char));
-    //err here
+    if (!buff->str)
+      return 1;
     buff->len = SIZE_BUFF;
   }
   ssize_t sLen = strlen(arg);
   while (buff->dest > buff->len / 2 || sLen + buff->dest > buff->len / 2) {
     buff->str = realloc(buff->str, buff->len * BUFF_MUL);
-    //err here
+    if (!buff->str)
+      return 1;
     buff->len *= BUFF_MUL;
   }
   memmove(buff->str + buff->dest, arg, sLen);
   buff->dest += sLen;
-  return 1;
+  return 0;
 }
 
 
@@ -161,39 +163,42 @@ static ssize_t calculate_size(const char* s, va_list* list, t_buff out[2]) {
   ssize_t   i = 0, j = 0;
   char      buff[TMP_BUFF_SIZE], color[TMP_BUFF_SIZE];
   t_buff    file;
-  char*     str      = NULL;
+  char*     str = NULL;
+  short     err = 0;
 
   if (!s)
-    return (-1);
+    return -1;
   bzero(&file, sizeof(file));
   while (s[i]) {
     if (s[i] != '%') {
       buff[0] = s[i];
       buff[1] = 0;
-      add_buff(buff, &out[0]);
-      add_buff(buff, &out[1]);
+      err += add_buff(buff, &out[0]);
+      err += add_buff(buff, &out[1]);
       j++;
     }
     else {
       j += print_select(list, s[++i], buff, &str, color);
       if (str && s[i] != 'F') {
-        add_buff(str, &out[0]);
-        add_buff(str, &out[1]);
+        err += add_buff(str, &out[0]);
+        err += add_buff(str, &out[1]);
         str = NULL;
       }
       else if (color[0])
-        add_buff(color, &out[0]);
+        err += add_buff(color, &out[0]);
       else if (str) {
         out[1].outfile = str;
       }
       else {
-        add_buff(buff, &out[0]);
-        add_buff(buff, &out[1]);
+        err += add_buff(buff, &out[0]);
+        err += add_buff(buff, &out[1]);
       }
     }
     i++;
+    if (err)
+      return -1;
   }
-  return (j);
+  return j;
 }
 
 
@@ -201,7 +206,7 @@ static ssize_t calculate_size(const char* s, va_list* list, t_buff out[2]) {
 /// @param s 
 /// @param  
 /// @return raw size of text with no color or flag init
-ssize_t debugInfo(const char* s, ...) {
+ssize_t debug_info(const char* s, ...) {
   va_list   args;
   ssize_t   i = 0;
   t_buff    buff[2];
@@ -212,9 +217,9 @@ ssize_t debugInfo(const char* s, ...) {
   va_start(args, s);
   if (DEBUG_FLAG > 0) {
     i = calculate_size(s, &args, buff);
-    if (DEBUG_FLAG & DflagOut)
-      write(STDOUT_FILENO, buff[0].str, strlen(buff[0].str));
-    if ((DEBUG_FLAG & DflagLog)) {
+    if (i != -1 && DEBUG_FLAG & DflagOut)
+      write(STDERR_FILENO, buff[0].str, strlen(buff[0].str));
+    if (i != -1 && DEBUG_FLAG & DflagLog) {
       if (buff[1].outfile) {
         int fd = open(buff[1].outfile, O_CREAT | O_APPEND | O_RDWR, 0644);
         if (fd > -1) {
@@ -227,11 +232,13 @@ ssize_t debugInfo(const char* s, ...) {
       else
         write(STDERR_FILENO, "no file give to output\n", 23);
     }
+    if (i == -1)
+      perror("calculate_size");
     free(buff[0].str);
     free(buff[1].str);
   }
   va_end(args);
-  return (i);
+  return i;
 }
 
 
@@ -239,7 +246,7 @@ int main(void) {
 	char* test = "a b c";
 
 	int n1  =     printf("test %s, %d%% %p %x %% %o", test, 421, &main, 54635, 0);
-	int n2  =  debugInfo("[%T]test %s, %Y%d%%%r %p %B%x%r %% %o%F\n", test, 421, &main, 54635, "OUT");
+	int n2  =  debug_info("[%C%T%r]test %s, %Y%d%%%r %p %B%x%r %% %o%F\n", test, 421, &main, 54635, "OUT");
 	printf("\n%d | %d\n", n1, n2);
 }
 
