@@ -13,10 +13,6 @@ NAME			=	game_name
 RENDER_LIB		=	Render.a
 RENDER_DIR		=	Render/
 
-#RL_DIR			=	include/readline/
-#RL_H			=	libhistory.a
-#RL_L			=	libreadline.a
-
 #		config		#
 
 ifeq ($(shell uname -s), Darwin)
@@ -25,17 +21,19 @@ else
     L = '
 endif
 
-
 # Compiler and flags
 CC				=	gcc
 CFLAGS			=	-Wall -Werror -Wextra -g
+
+# local
+ifeq ($(shell test -d raylib; echo "$$?"), 0)
+    CFLAGS += -D LOCALLIB=1
+endif
 #-fsanitize=address
 RM				=	rm -f
 
 # Sources are all .c files
 SRCS	=	main.c\
-
-#env -i ./minishell
 
 OBJS	=	$(SRCS:.c=.o)
 

@@ -7,6 +7,12 @@ RM		=	rm -f
 LIBFT		=	C_tools.a
 LIBFT_DIR	=	../C_tools/
 
+
+# local
+ifeq ($(shell test -d ../raylib; echo "$$?"), 0)
+    CFLAGS += -D LOCALLIB=1
+endif
+
 SRCS	=	Render.c
 
 OBJS	=	$(SRCS:.c=.o)
@@ -15,7 +21,10 @@ $(NAME): $(OBJS) $(LIBFT_DIR)$(LIBFT)
 	@cp $(LIBFT_DIR)$(LIBFT) $(NAME)
 	@ar rcs $(NAME) $(OBJS) 
 
-all: $(LDIR)$(LIBFT) $(NAME)
+all: lib $(LDIR)$(LIBFT) $(NAME)
+
+$(LIBFT_DIR)$(LIBFT):
+	make -C $(LIBFT_DIR)
 
 clean:
 	@$(RM) $(OBJS)
