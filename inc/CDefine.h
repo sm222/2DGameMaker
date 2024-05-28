@@ -16,13 +16,25 @@
 # define VEC2(x,y)   (Vector2){x, y}
 # define DEF_CAM     Camera2D{VEC2(0,0),VEC2(0,0), 0, 0}
 
+typedef unsigned long long t_ID;
+typedef unsigned int       t_Depth;
+
+t_ID                 _id;
+
+# define ID_GET      ((++_id))
+# define ID_NB       ((_id))
+
+//Expression1 ? Expression2 : Expression3;
+
+# define ID_VALID ((_id == (t_ID)-1 ? 0 : ID_GET))
+
 struct RenderValue {
   bool                 Visible;
   bool                _Render;
   Vector2*             Pos;
   Texture*             Texture;
-  unsigned int         Depth;
-  unsigned long long  _Id;
+  t_Depth              Depth;
+  t_ID                 _Id;
 };
 
 struct Canvas {

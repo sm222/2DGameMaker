@@ -2,6 +2,7 @@
 
 void test(void) {
 	TIME_START;
-	LOG_WAR(TIME_STOP);
+	TIME_STOP;
+	printf("%s\n",TIME_STOP);
 	return ;
 }
