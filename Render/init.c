@@ -1,36 +1,5 @@
 #include "../inc/GMRender.h"
 
-static t_ID _push_obj(t_RenderValue* const obj, t_addLayer* data) {
-  size_t  i = data->_pos;
-  if (data->_layers->_ItemNumber[i])
-    return 1;
-  (void)obj;
-
-  //while () {
-  //  
-  //}
-  return 0;
-}
-
-
-t_ID add_to_canvas(t_RenderValue* const obj, t_addLayer data) {
-  if (!obj) {
-    LOG_ERR("no obj give: add_to_anvas");
-    return 0;
-  }
-  t_ID id = 0;
-  if (!data._layers) {
-    LOG_ERR("no layer give");
-    return id;
-  }
-  if (data._pos > data._layers->_SizeRenderList) {
-    LOG_WAR("out of range");
-    return id;
-  }
-  id = _push_obj(obj, &data);
-  return id;
-}
-
 static int _add_list(t_RenderValue*** _RenderList, size_t i) {
   if (!_RenderList[i]) {
     _RenderList[i] = calloc(NB_ITEM + 1, sizeof(*_RenderList));
@@ -38,15 +7,6 @@ static int _add_list(t_RenderValue*** _RenderList, size_t i) {
       return 1;
   }
   return 0;
-}
-
-void _free_layers(t_Layers* layers) {
-  for (size_t i = 0; layers->_RenderList[i]; i++) {
-    if (layers->_RenderList[i]) {
-      free(layers->_RenderList[i]);
-      layers->_RenderList[i] = NULL;
-    }
-  }
 }
 
 static int _setup_RenderValue(struct Canvas* data) {
@@ -75,19 +35,6 @@ static int _setup_RenderValue(struct Canvas* data) {
   return 0;
 }
 
-void free_Canvas(struct Canvas** canvas) {
-  if (!canvas) {
-    LOG_ERR("no canvas givent");
-    return ;
-  }
-  _free_layers(&(*canvas)->_Game);
-  _free_layers(&(*canvas)->_Ui);
-  free((*canvas)->_Game._RenderList);
-  free((*canvas)->_Ui._RenderList);
-  free(*canvas);
-  *canvas = NULL;
-}
-
 struct Canvas*  init_canvas(void) {
   struct Canvas* tmp = NULL;
   tmp = calloc(1, sizeof(*tmp));
@@ -96,6 +43,7 @@ struct Canvas*  init_canvas(void) {
     return (NULL);
   }
   if (_setup_RenderValue(tmp)) {
+    perror("malloc _setup_RenderValue");
     free(tmp);
     tmp = NULL;
   }

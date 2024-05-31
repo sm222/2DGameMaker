@@ -14,7 +14,8 @@ ifeq ($(shell test -d ../raylib; echo "$$?"), 0)
 endif
 
 SRCS	=	Render.c\
-			init.c
+			init.c\
+			free_data.c
 
 OBJS	=	$(SRCS:.c=.o)
 
