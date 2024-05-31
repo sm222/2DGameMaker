@@ -13,7 +13,8 @@ ifeq ($(shell test -d ../raylib; echo "$$?"), 0)
     CFLAGS += -D LOCALLIB=1
 endif
 
-SRCS	=	Render.c
+SRCS	=	Render.c\
+			init.c
 
 OBJS	=	$(SRCS:.c=.o)
 

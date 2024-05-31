@@ -7,6 +7,7 @@
 
 void test(void);
 
-struct Canvas*  initCanvas(void);
+struct Canvas*  init_canvas(void);
+void free_Canvas(struct Canvas** canvas);
 
 #endif // GMRENDER_H

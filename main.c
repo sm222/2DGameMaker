@@ -2,5 +2,9 @@
 # include "inc/GMRender.h"
 
 int main() {
-	test();
+	//test();
+	TIME_START;
+	t_Canvas *canvas = init_canvas();
+	LOG_MSG(TIME_STOP);
+	free_Canvas(&canvas);
 }

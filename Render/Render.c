@@ -2,7 +2,10 @@
 
 void test(void) {
 	TIME_START;
-	TIME_STOP;
-	printf("%s\n",TIME_STOP);
+	for (size_t i = 0; i < 100; i++) {
+		TIME_RESTART;
+		usleep(i * i);
+		LOG_MSG(TIME_STOP);
+	}
 	return ;
 }
