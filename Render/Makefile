@@ -15,7 +15,9 @@ endif
 
 SRCS	=	Render.c\
 			init.c\
-			free_data.c
+			free_data.c\
+			add_obj.c\
+			rm_obj.c
 
 OBJS	=	$(SRCS:.c=.o)
 

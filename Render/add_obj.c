@@ -2,8 +2,20 @@
 
 static t_ID _push_obj(t_RenderValue* const obj, t_addLayer* data) {
   size_t  i = data->_pos;
-  if (data->_layers->_ItemNumber[i])
-    return 0;
+  t_Layers*    layer = data->_layers;
+  if (layer->_ItemNumber[i] < layer->_LenRenderList[i]) {
+    size_t j = 0;
+    while (j < layer->_LenRenderList[i] && layer->_RenderList[i][j]) { j++; }
+    if (j != layer->_LenRenderList[i]) {
+      layer->_RenderList[i][j] = obj;
+      layer->_ItemNumber[i]++;
+      return obj->_Id;
+    }
+    else
+      LOG_ERR("can't add obj, arr got full manualy");
+  }
+  else
+    LOG_WAR("no space to add obj");
   return 0;
 }
 
@@ -24,7 +36,5 @@ t_ID add_to_canvas(t_RenderValue* const obj, t_addLayer data) {
   id = _push_obj(obj, &data);
   if (id != 0)
     LOG_MSG("new obj");
-  else
-    LOG_WAR("err add obj");
   return id;
 }
