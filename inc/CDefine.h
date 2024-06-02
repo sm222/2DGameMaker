@@ -13,7 +13,7 @@
 # define MAX_LAYER   100
 # define DEF_UI      10
 # define DEF_LAYER   10
-# define NB_ITEM     50
+# define NB_ITEM     5
 # define VEC2(x,y)   (Vector2){x, y}
 # define DEF_CAM     Camera2D{VEC2(0,0),VEC2(0,0), 0, 0}
 
@@ -22,8 +22,8 @@ typedef unsigned int       t_Depth;
 
 extern t_ID              _id;
 
-# define ID_GET      ((++_id))
 # define ID_NB       ((_id))
+# define ID_GET      ((++ID_NB))
 
 //Expression1 ? Expression2 : Expression3;
 
