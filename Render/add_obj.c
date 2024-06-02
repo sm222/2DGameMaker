@@ -1,14 +1,12 @@
 #include "../inc/GMRender.h"
 
-static t_ID _push_obj(t_RenderValue* const obj, t_addLayer* data) {
-  size_t  i = data->_pos;
-  t_Layers*    layer = data->_layers;
-  if (layer->_ItemNumber[i] < layer->_LenRenderList[i]) {
-    size_t j = 0;
-    while (j < layer->_LenRenderList[i] && layer->_RenderList[i][j]) { j++; }
-    if (j != layer->_LenRenderList[i]) {
-      layer->_RenderList[i][j] = obj;
-      layer->_ItemNumber[i]++;
+static t_ID _push_obj(t_RenderValue* const obj, size_t y, t_Layers* layer) {
+  if (layer->_ItemNumber[y] < layer->_LenRenderList[y]) {
+    size_t x = 0;
+    while (x < layer->_LenRenderList[y] && layer->_RenderList[y][x]) { x++; }
+    if (x != layer->_LenRenderList[y]) {
+      layer->_RenderList[y][x] = obj;
+      layer->_ItemNumber[y]++;
       return obj->_Id;
     }
     else
@@ -19,21 +17,22 @@ static t_ID _push_obj(t_RenderValue* const obj, t_addLayer* data) {
   return 0;
 }
 
-t_ID add_to_canvas(t_RenderValue* const obj, t_addLayer data) {
+
+t_ID add_to_canvas(t_RenderValue* const obj, size_t y, t_Layers* layer) {
   if (!obj) {
     LOG_ERR("no obj give: add_to_anvas");
     return 0;
   }
   t_ID id = 0;
-  if (!data._layers) {
+  if (!layer) {
     LOG_ERR("no layer give");
     return id;
   }
-  if (data._pos > data._layers->_SizeRenderList) {
-    LOG_WAR("out of range");
+  if (y > layer->_SizeRenderList) {
+    LOG_WAR("add_to_canvas y out of range");
     return id;
   }
-  id = _push_obj(obj, &data);
+  id = _push_obj(obj, y, layer);
   if (id != 0)
     LOG_MSG("new obj");
   return id;
