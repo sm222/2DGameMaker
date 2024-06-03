@@ -2,7 +2,7 @@
 
 static bool _add_list(t_RenderValue*** _RenderList, size_t i) {
   if (!_RenderList[i]) {
-    _RenderList[i] = calloc(NB_ITEM + 1, sizeof(**_RenderList));
+    _RenderList[i] = calloc(NB_ITEM, sizeof(**_RenderList));
     if (!_RenderList[i])
       return 1;
   }
