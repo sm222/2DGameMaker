@@ -10,10 +10,10 @@ static bool _add_list(t_RenderValue*** _RenderList, size_t i) {
 }
 
 static int _setup_RenderValue(struct Canvas* data) {
-  data->_Game._RenderList = calloc(DEF_LAYER + 1, sizeof(*data->_Game._RenderList));
+  data->_Game._RenderList = calloc(DEF_LAYER, sizeof(*data->_Game._RenderList));
   if (!data->_Game._RenderList)
     return 1;
-  data->_Ui._RenderList = calloc(DEF_UI + 1, sizeof(*data->_Ui._RenderList));
+  data->_Ui._RenderList = calloc(DEF_UI, sizeof(*data->_Ui._RenderList));
   if (!data->_Ui._RenderList) {
     free(data->_Game._RenderList);
     return 2;
@@ -48,6 +48,7 @@ struct Canvas*  init_canvas(void) {
     perror("malloc _setup_RenderValue");
     free(tmp);
     tmp = NULL;
+    return NULL;
   }
   LOG_MSG("new canvas");
   return tmp;

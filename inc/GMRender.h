@@ -16,6 +16,7 @@ t_ID               rm_obj_id(t_ID const id, t_Canvas* canvas);
 t_ID               rm_obj_cord(size_t const y, size_t const x, t_Layers* layer);
 //                 |
 short              resize_auto(t_Layers* layer, size_t const y);
+short              resize_game(t_Canvas* canvas, short dir);
 //                 |
 void              _free_layers(t_Layers* layers);
 

@@ -56,10 +56,5 @@ typedef struct Canvas {
   t_Layers               _Ui;
 } t_Canvas;
 
-typedef struct addLayer {
-  size_t                 _pos;
-  t_Depth                _Depth;
-  t_Layers*              _layers;
-} t_addLayer;
 
 #endif // CDEFINE_H
