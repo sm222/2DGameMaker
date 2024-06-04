@@ -1,3 +1,20 @@
+Norme:
+	Class:
+		UpperCamelCase
+	Function:
+		lowerCamelCase
+		
+
+
+Function/variable:
+	sprite:
+			addSprite()
+			getSprite()
+	image:
+		image_index
+		image_angle()
+
+
 feture:
 	game:
 		hot reload
