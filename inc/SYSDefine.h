@@ -28,8 +28,9 @@
 #  define TESTVAL "/"
 # endif
 
-# if (LOCALLIB)
-//local path to the lib
+# ifdef LOCALLIB
+#  include "../raylib/src/raylib.h"
+#  include "../raylib/src/raymath.h"
 # else
 #  include <raylib.h>
 #  include <raymath.h>

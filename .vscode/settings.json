@@ -58,8 +58,14 @@
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "files.associations": {
     "*.ms": "shellscript",
+    "*.h": "c",
+    "*.tpp": "cpp",
     "cstdint": "cpp",
     "string": "cpp",
-    "wordsize.h": "c"
+    "wordsize.h": "c",
+    "raylib.h": "c",
+    "cdefine.h": "c",
+    "gmrender.h": "c",
+    "algorithm": "c"
   }
 }
