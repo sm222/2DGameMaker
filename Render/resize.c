@@ -1,14 +1,18 @@
 #include "../inc/GMRender.h"
 
 static short _resize_t_Layers(t_Layers* layer, short dir) {
-  printf("- > %zu\n", layer->_SizeRenderList);
   if (layer->_SizeRenderList > 1 && dir < 0) {
-    layer->_RenderList = realloc(layer->_RenderList, sizeof(*layer->_RenderList) * (layer->_SizeRenderList  - dir));
+    free(layer->_RenderList[layer->_SizeRenderList -1]);
+    layer->_RenderList = realloc(layer->_RenderList, sizeof(*layer->_RenderList) * (layer->_SizeRenderList - dir));
     layer->_SizeRenderList += dir;
   }
   else if (dir > 0) {
-    layer->_RenderList = realloc(layer->_RenderList, sizeof(*layer->_RenderList) * (layer->_SizeRenderList  + dir));
-    layer->_SizeRenderList += dir;
+    layer->_RenderList = realloc(layer->_RenderList, sizeof(*layer->_RenderList) * (layer->_SizeRenderList + dir));
+    if (layer->_RenderList) {
+      layer->_RenderList[layer->_SizeRenderList] = NULL;
+      _add_list(layer->_RenderList, layer->_SizeRenderList);
+      layer->_SizeRenderList += dir;
+    }
   }
   else
     return 0;
@@ -23,7 +27,7 @@ static short _resize_t_Layers(t_Layers* layer, short dir) {
 }
 
 short resize_game(t_Canvas* canvas, short dir) {
-  if (!canvas || 1) {
+  if (!canvas) {
     LOG_WAR("resize_game no canvas");
     return 1;
   }

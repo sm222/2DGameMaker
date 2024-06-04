@@ -1,10 +1,11 @@
 #include "../inc/GMRender.h"
 
-static bool _add_list(t_RenderValue*** _RenderList, size_t i) {
+bool _add_list(t_RenderValue*** _RenderList, size_t i) {
   if (!_RenderList[i]) {
     _RenderList[i] = calloc(NB_ITEM, sizeof(**_RenderList));
-    if (!_RenderList[i])
+    if (!_RenderList[i]) {
       return 1;
+    }
   }
   return 0;
 }
@@ -20,13 +21,13 @@ static int _setup_RenderValue(struct Canvas* data) {
   }
   for (size_t i = 0; i < DEF_LAYER; i++) {
     data->_Game._LenRenderList[i] = NB_ITEM;
-    if(_add_list(data->_Game._RenderList, i)) {
+    if (_add_list(data->_Game._RenderList, i)) {
       _free_layers(&data->_Game);
       return 1;
     }
   }
   for (size_t i = 0; i < DEF_UI; i++) {
-    data->_Ui._LenRenderList[i] = NB_ITEM + 1;
+    data->_Ui._LenRenderList[i] = NB_ITEM;
     if(_add_list(data->_Ui._RenderList, i)) {
       _free_layers(&data->_Ui);
       return 2;

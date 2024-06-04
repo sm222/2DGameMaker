@@ -9,20 +9,22 @@ int main() {
 	for (size_t i = 0; i < NB_ITEM * 2; i++) {
 		//add_to_canvas(&test, 0, &canvas->_Game);
 	}
-	//resize_auto(&canvas->_Game, 0);
-	//resize_game(canvas, 1);
-	//resize_game(canvas, 0);
-	//resize_game(canvas, -1);
-	//resize_game(canvas, -1);
-	//resize_game(canvas, -1);
-	//resize_game(canvas, -1);
-	//resize_game(canvas, -1);
-	//resize_game(canvas, -1);
-	//resize_game(canvas, -1);
-	//resize_game(canvas, -1);
-	//resize_game(canvas, -1);
-	//resize_game(canvas, -1);
-	//resize_game(canvas, -1);
+	resize_auto(&canvas->_Game, 0);
+	resize_game(canvas, 1);
+	resize_game(canvas, 0);
+	resize_game(canvas, -1);
+	resize_game(canvas, -1);
+	resize_game(canvas, -1);
+	resize_game(canvas, -1);
+	resize_game(canvas, -1);
+	resize_game(canvas, -1);
+	resize_game(canvas, -1);
+	resize_game(canvas, -1);
+	resize_game(canvas, -1);
+	resize_game(canvas, -1);
+	resize_game(canvas, -1);
+	resize_game(canvas, -1);
+	resize_game(canvas, -1);
 	LOG_MSG(TIME_STOP);
 	free_Canvas(&canvas);
 }
