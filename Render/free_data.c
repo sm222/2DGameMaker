@@ -1,7 +1,6 @@
 #include "../inc/GMRender.h"
 
 void _free_layers(t_Layers* layers) {
-  printf("> - %zu\n", layers->_SizeRenderList);
   for (size_t i = 0; i < layers->_SizeRenderList; i++) {
     free(layers->_RenderList[i]);
     layers->_RenderList[i] = NULL;

@@ -26,20 +26,32 @@ static short _resize_t_Layers(t_Layers* layer, short dir) {
   return 0;
 }
 
+static short edit_size(short nb) {
+  if (nb) {
+    while (nb > 1)
+      nb--;
+  }
+  if (nb < -1) {
+    while (nb < -1)
+      nb++;
+  }
+  return nb;
+}
+
+short resize_ui(t_Canvas* canvas, short dir) {
+  if (!canvas) {
+    LOG_WAR("resize_game no canvas");
+    return 1;
+  }
+  return _resize_t_Layers(&canvas->_Ui, edit_size(dir));
+}
+
 short resize_game(t_Canvas* canvas, short dir) {
   if (!canvas) {
     LOG_WAR("resize_game no canvas");
     return 1;
   }
-  if (dir) {
-    while (dir > 1)
-      dir--;
-  }
-  if (dir < -1) {
-    while (dir < -1)
-      dir++;
-  }
-  return _resize_t_Layers(&canvas->_Game, dir);
+  return _resize_t_Layers(&canvas->_Game, edit_size(dir));
 }
 
 short resize_auto(t_Layers* layer, size_t const y) {
@@ -55,6 +67,7 @@ short resize_auto(t_Layers* layer, size_t const y) {
   if (layer->_ItemNumber[y] > layer->_LenRenderList[y] / 2) {
     size = ((sizeof(**layer->_RenderList) * layer->_LenRenderList[y]) * 2);
     layer->_RenderList[y] = realloc(layer->_RenderList[y], size);
+    bzero(layer->_RenderList[y] +  layer->_LenRenderList[y],  size / 2);
     LOG_MSG("resize_auto bigger");
   }
   else if (layer->_ItemNumber[y] < layer->_LenRenderList[y] / 4 && layer->_LenRenderList[y] > NB_ITEM) {

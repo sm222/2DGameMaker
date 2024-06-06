@@ -17,6 +17,7 @@ t_ID               rm_obj_cord(size_t const y, size_t const x, t_Layers* layer);
 //                 |
 short              resize_auto(t_Layers* layer, size_t const y);
 short              resize_game(t_Canvas* canvas, short dir);
+short              resize_ui(t_Canvas* canvas, short dir);
 //                 |
 void              _free_layers(t_Layers* layers);
 bool              _add_list(t_RenderValue*** _RenderList, size_t i);

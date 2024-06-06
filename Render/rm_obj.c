@@ -8,15 +8,23 @@ static t_ID  _wipe_obj(t_Layers* layer, size_t const y, size_t const x) {
 }
 
 static t_ID  _rm_id(t_ID const id, t_Layers* layer) {
+  t_ID    tmp_id = 0;
+  size_t  nb = 0;
+  char    buff[BUFSIZ];
+
   for (size_t i = 0; i < layer->_SizeRenderList; i++) {
     for (size_t j = 0; j < layer->_LenRenderList[i]; j++) {
       if (layer->_RenderList[i][j] && layer->_RenderList[i][j]->_Id == id) {
         LOG_MSG("remove by id sucsess");
-        return _wipe_obj(layer, i, j);
+        if (_wipe_obj(layer, i, j) == id)
+          nb++;
       }
     }
   }
-  return 0;
+  bzero(buff, BUFSIZ);
+  snprintf(buff, BUFSIZ, "obj remove %zu", nb);
+  LOG_MSG(buff);
+  return tmp_id;
 }
 
 size_t  rm_layer(t_Layers* layer, size_t y) {
@@ -41,8 +49,8 @@ t_ID       rm_obj_id(t_ID const id, t_Canvas* canvas) {
     return 0;
   }
   t_ID  _id = 0;
-  _id += _rm_id(id, &canvas->_Game);
-  _id += _rm_id(id, &canvas->_Ui);
+  _id = _rm_id(id, &canvas->_Game);
+  _id = _rm_id(id, &canvas->_Ui);
   if (!_id)
     LOG_WAR("id not find");
   return _id;
