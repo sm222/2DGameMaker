@@ -1,6 +1,6 @@
 #include "../inc/GMRender.h"
 
-static t_ID _push_obj(t_RenderValue* const obj, size_t y, t_Layers* layer) {
+static t_ID _push_obj(t_RenderValue* const obj, size_t const y, t_Layers* layer) {
   if (layer->_LenRenderList[y] / 2 < layer->_ItemNumber[y])
     resize_auto(layer, y);
   if (layer->_ItemNumber[y] < layer->_LenRenderList[y]) {
