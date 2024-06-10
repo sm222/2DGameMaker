@@ -20,7 +20,7 @@ static t_ID _push_obj(t_RenderValue* const obj, size_t const y, t_Layers* layer)
 }
 
 
-t_ID add_to_canvas(t_RenderValue* const obj, size_t y, t_Layers* layer) {
+t_ID add_to_canvas(t_RenderValue* const obj, size_t const y, t_Layers* layer) {
   if (!obj) {
     LOG_ERR("no obj give: add_to_anvas");
     return 0;

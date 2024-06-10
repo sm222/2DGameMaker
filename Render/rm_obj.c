@@ -15,7 +15,6 @@ static t_ID  _rm_id(t_ID const id, t_Layers* layer) {
   for (size_t i = 0; i < layer->_SizeRenderList; i++) {
     for (size_t j = 0; j < layer->_LenRenderList[i]; j++) {
       if (layer->_RenderList[i][j] && layer->_RenderList[i][j]->_Id == id) {
-        LOG_MSG("remove by id sucsess");
         if (_wipe_obj(layer, i, j) == id)
           nb++;
       }
@@ -27,7 +26,7 @@ static t_ID  _rm_id(t_ID const id, t_Layers* layer) {
   return tmp_id;
 }
 
-size_t  rm_layer(t_Layers* layer, size_t y) {
+size_t  rm_layer(t_Layers* layer, size_t const y) {
   if (!layer) {
     LOG_ERR("rm_layer no layer givent");
     return 0;

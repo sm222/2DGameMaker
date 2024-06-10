@@ -1,6 +1,6 @@
 #include "../inc/GMRender.h"
 
-bool _add_list(t_RenderValue*** _RenderList, size_t i) {
+bool _add_list(t_RenderValue*** _RenderList, size_t const i) {
   if (!_RenderList[i]) {
     _RenderList[i] = calloc(NB_ITEM, sizeof(**_RenderList));
     if (!_RenderList[i]) {
