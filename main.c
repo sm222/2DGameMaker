@@ -3,13 +3,18 @@
 
 int main() {
 	TIME_START;
-	t_RenderValue  test;
+	t_RenderValue  test, test2;
 	t_Canvas*      canvas = init_canvas();
 	test._Id = 1;
-	for (size_t i = 0; i < NB_ITEM * 2; i++) {
+	test2._Id = 2;
+	for (size_t i = 0; i < NB_ITEM / 2; i++) {
 		add_to_canvas(&test, 0, &canvas->_Game);
 	}
+	for (size_t i = 0; i < NB_ITEM / 2; i++) {
+		add_to_canvas(&test2, 0, &canvas->_Game);
+	}
 	rm_obj_id(1, canvas);
+	_pre_render(canvas);
 	resize_auto(&canvas->_Game, 0);
 	resize_game(canvas, 0);
 	resize_game(canvas, 0);

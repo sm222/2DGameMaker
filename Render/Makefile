@@ -18,7 +18,8 @@ SRCS	=	Render.c\
 			free_data.c\
 			add_obj.c\
 			rm_obj.c\
-			resize.c
+			resize.c\
+			pre_render.c
 
 OBJS	=	$(SRCS:.c=.o)
 
