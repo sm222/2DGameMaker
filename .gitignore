@@ -15,7 +15,7 @@
 *.so
 *.dylib
 *.dll
-./raylib
+raylib/
 
 # Fortran module files
 *.mod

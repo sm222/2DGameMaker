@@ -2,7 +2,6 @@
 # define GM_CPPDEFINE_H
 
 extern "C" {
-    # include "SYSDefine.h"
     # include "CDefine.h"
 }
 

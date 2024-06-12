@@ -7,7 +7,7 @@
 
 class BasicObject{
     public:
-        *RenderValue renderValue;
+        RenderValue *renderValue;
 
 
     protected:
