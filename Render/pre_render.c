@@ -14,7 +14,19 @@ static void _opti_space(_t_move_obj* data) {
 }
 
 void  _bubble(_t_move_obj* data) {
-  (void)data;
+  t_RenderValue* tmp;
+  for (size_t i = 0; i < data->_len && data->_list[i]; i++) {
+    if (data->_list[i] && data->_list[i + 1]) {
+      if (data->_list[i]->Depth > data->_list[i + 1]->Depth) {
+        tmp = data->_list[i + 1];
+        data->_list[i + 1] = data->_list[i];
+        data->_list[i] = tmp;
+        i = 0;
+        LOG_ERR("test");
+        continue;
+      }
+    }
+  }
 }
 
 static void* _sort(void* data) {
@@ -23,7 +35,7 @@ static void* _sort(void* data) {
   bzero(c->_time, BUFSIZ);
   void  (*ft)(_t_move_obj*);
 
-  ft = &_bubble;
+  ft = set_render(NULL);
   ft(data);
   return data;
 }
@@ -33,8 +45,8 @@ static int _move_obj(struct Layers* layer) {
   if (!nb)
     return 0;
   pthread_t    threads[nb];
-  //bool         err[nb];
   _t_move_obj  data[nb];
+  //bool         err[nb];
 
   for (size_t i = 0; i < nb; i++) {
     data[i]._list = layer->_RenderList[i];

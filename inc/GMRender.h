@@ -13,6 +13,7 @@ typedef struct _s_move_obj {
     char             _time[BUFSIZ];
 } _t_move_obj;
 
+#define  sort_ft(name)   void(*name)(_t_move_obj*)
 
 void test(void);
 
@@ -32,5 +33,8 @@ void              _free_layers(t_Layers* layers);
 bool              _add_list(t_RenderValue*** _RenderList, size_t const i);
 //                 |
 int               _pre_render(struct Canvas* canvas);
-
+//                 |
+void              _bubble(_t_move_obj* data);
+//                 |
+void*              set_render(void* ft);
 #endif // GMRENDER_H

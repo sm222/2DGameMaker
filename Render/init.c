@@ -1,5 +1,12 @@
 #include "../inc/GMRender.h"
 
+void* set_render(void* ft) {
+  static sort_ft(tmp) = &_bubble;
+  if (ft)
+    tmp = ft;
+  return tmp;
+}
+
 bool _add_list(t_RenderValue*** _RenderList, size_t const i) {
   if (!_RenderList[i]) {
     _RenderList[i] = calloc(NB_ITEM, sizeof(**_RenderList));
