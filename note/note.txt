@@ -1,3 +1,25 @@
+
+
+
+Norme:
+	Class:
+		UpperCamelCase
+	Function:
+		lowerCamelCase
+		
+
+
+Function/variable:
+	sprite:
+			addSprite()
+			getSprite()
+	image:
+		image_index
+		image_angle()
+
+engin -> rooms -> canvas -> layers -> *renderValue
+
+
 feture:
 	game:
 		hot reload
@@ -21,15 +43,44 @@ feture:
 		priority in layer for render
 		render only one layer
 	
-	obj:
-		solid base obj
-		built in colison
-		velocity
-		rotation and potition
-		texture
+	engin
+		-Sprite
+		-room[]
+		-init()
+		-loop()
+
+	basic object:
+		*_RenderValue
+		_id
+		_image
+		_texture
+		_pos
+		_x
+		_y
+
+	props obj:
+		_visible
+		_solid
+		_persistent
+		_image
+		_xStart
+		_yStart
+		_xPrevious
+		_yPrevious
+		_direction
+		_speed
+		_hSpeed
+		_vSpeed
+		_depth
+		_layer
+		_imageAngle
+		_imageAlpha
+		_imageSpeed
+		_imageXFlip
+		_imageYFlip
 	
-	smiple obj:
-		?
+	lite obj:
+		_texture
 
 	input:
 		premade keybord layout that can be edit
