@@ -1,8 +1,10 @@
 #ifndef  GM_CPPDEFINE_H
 # define GM_CPPDEFINE_H
 
-# include "SYSDefine.h"
-# include "CDefine.h"
+extern "C" {
+    # include "SYSDefine.h"
+    # include "CDefine.h"
+}
 
 // C++ - define
 #include <string>
