@@ -42,9 +42,9 @@ size_t  emptyLayer(t_Layers* layer, size_t const y) {
   return tmp;
 }
 
-t_ID       rmFroRenderById(t_ID const id, t_Canvas* canvas) {
+t_ID       rmFromRenderById(t_ID const id, t_Canvas* canvas) {
   if (!canvas || id == 0) {
-    LOG_ERR("invalid arg rmFroRenderById");
+    LOG_ERR("invalid arg rmFromRenderById");
     return 0;
   }
   t_ID  _id = 0;
