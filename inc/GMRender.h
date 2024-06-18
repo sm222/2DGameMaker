@@ -22,7 +22,7 @@ void               freeCanvas(struct Canvas** canvas);
 t_ID               addToCanvas(t_RenderValue* const obj, size_t const y, t_Layers* layer);
 //                 |
 size_t             emptyLayer(t_Layers* layer, size_t const y);
-t_ID               rmFromRenderById(t_ID const id, t_Canvas* canvas);
+unsigned int       rmFromRenderById(t_ID const id, t_Canvas* canvas);
 t_ID               rmFromRenderByCord(size_t const y, size_t const x, t_Layers* layer);
 //                 |
 short              resizeLayerAuto(t_Layers* layer, size_t const y);

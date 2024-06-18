@@ -7,9 +7,8 @@ static t_ID  _wipe_obj(t_Layers* layer, size_t const y, size_t const x) {
   return id;
 }
 
-static t_ID  _rm_id(t_ID const id, t_Layers* layer) {
-  t_ID    tmp_id = 0;
-  size_t  nb = 0;
+static unsigned int  _rm_id(t_ID const id, t_Layers* layer) {
+  unsigned int  nb = 0;
   char    buff[BUFSIZ];
 
   for (size_t i = 0; i < layer->_SizeRenderList; i++) {
@@ -21,9 +20,9 @@ static t_ID  _rm_id(t_ID const id, t_Layers* layer) {
     }
   }
   bzero(buff, BUFSIZ);
-  snprintf(buff, BUFSIZ, "obj remove %zu", nb);
+  snprintf(buff, BUFSIZ, "obj remove %u", nb);
   LOG_MSG(buff);
-  return tmp_id;
+  return nb;
 }
 
 size_t  emptyLayer(t_Layers* layer, size_t const y) {
@@ -42,14 +41,14 @@ size_t  emptyLayer(t_Layers* layer, size_t const y) {
   return tmp;
 }
 
-t_ID       rmFromRenderById(t_ID const id, t_Canvas* canvas) {
+unsigned int  rmFromRenderById(t_ID const id, t_Canvas* canvas) {
   if (!canvas || id == 0) {
     LOG_ERR("invalid arg rmFromRenderById");
     return 0;
   }
-  t_ID  _id = 0;
-  _id = _rm_id(id, &canvas->_Game);
-  _id = _rm_id(id, &canvas->_Ui);
+  unsigned int  _id = 0;
+  _id += _rm_id(id, &canvas->_Game);
+  _id += _rm_id(id, &canvas->_Ui);
   if (!_id)
     LOG_WAR("id not find");
   return _id;

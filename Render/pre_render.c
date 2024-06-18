@@ -56,14 +56,11 @@ static int _move_obj(struct Layers* layer) {
   for (size_t i = 0; i < nb; i++) {
     pthread_join(threads[i], NULL);
   }
-  for (size_t i = 0; i < nb; i++) {
-    printf("[%zu] -> %s\n", i, data[i]._time);
-  }
   return nb;
 }
 
 int _pre_render(struct Canvas* canvas) {
   _move_obj(&canvas->_Game);
-  //_move_obj(&canvas->_Ui);
+  _move_obj(&canvas->_Ui);
   return 0;
 }
