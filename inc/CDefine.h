@@ -10,13 +10,14 @@
 //
 
 # define MAX_CANVAS  10
-# define MAX_LAYER   100
+# define MAX_LAYER   50
 # define DEF_UI      10
 # define DEF_LAYER   10
 # define NB_ITEM     5
 
 // macro
 # define VEC2(x,y)   (Vector2){x, y}
+# define VEC2DEF     (VEC2(0,0))
 # define DEF_CAM     Camera2D{VEC2(0,0),VEC2(0,0), 0, 0}
 
 typedef unsigned long long t_ID;
@@ -25,7 +26,7 @@ typedef unsigned int       t_Depth;
 
 //Expression1 ? Expression2 : Expression3;
 
-# define ID_VALID ((_id == (t_ID)-1 ? 0 : ID_GET))
+# define ID_VALID(objId) (objId == (t_ID)-1 ? 0 : objId)
 
 typedef struct RenderValue {
   bool                 Visible;
@@ -48,8 +49,6 @@ typedef struct Layers {
 
 typedef struct Canvas {
   Camera2D*              _Camera;
-  size_t                 _YCamera; // can rm probably
-  size_t                 _XCamera; // can rm probably
     // GAME                //
   t_Layers               _Game;
     // UI                  //

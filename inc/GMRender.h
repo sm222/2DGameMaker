@@ -7,10 +7,10 @@
 # include <pthread.h>
 
 typedef struct _s_move_obj {
-    t_RenderValue**  _list;
-    pthread_mutex_t  _key;
-    size_t           _len;
-    char             _time[BUFSIZ];
+  t_RenderValue**  _list;
+  pthread_mutex_t  _key;
+  size_t           _len;
+  char             _time[TMP_BUFF_SIZE];
 } _t_move_obj;
 
 #define  sort_ft(name)   void(*name)(_t_move_obj*)

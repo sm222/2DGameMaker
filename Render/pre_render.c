@@ -46,7 +46,7 @@ static int _move_obj(struct Layers* layer) {
   //bool         err[nb];
 
   for (size_t i = 0; i < nb; i++) {
-    bzero(data[i]._time, BUFSIZ);
+    bzero(data[i]._time, TMP_BUFF_SIZE);
     data[i]._list = layer->_RenderList[i];
     data[i]._len = layer->_LenRenderList[i];
     //pthread_create(thread[i], NULL, &task, ph[i]);
@@ -57,7 +57,7 @@ static int _move_obj(struct Layers* layer) {
     pthread_join(threads[i], NULL);
   }
   for (size_t i = 0; i < nb; i++) {
-    printf("[%zu]>%s\n", i, data[i]._time);
+    printf("[%zu] -> %s\n", i, data[i]._time);
   }
   return nb;
 }
