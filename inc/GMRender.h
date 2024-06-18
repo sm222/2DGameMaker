@@ -15,8 +15,8 @@ typedef struct _s_move_obj {
 
 #define  sort_ft(name)   void(*name)(_t_move_obj*)
 
-void test(void);
-
+int                Render(t_Canvas* canvas);
+//                 |
 struct Canvas*     initCanvas(void);
 void               freeCanvas(struct Canvas** canvas);
 t_ID               addToCanvas(t_RenderValue* const obj, size_t const y, t_Layers* layer);
@@ -32,7 +32,7 @@ short              resizeUi(t_Canvas* canvas, short dir);
 void              _free_layers(t_Layers* layers);
 bool              _add_list(t_RenderValue*** _RenderList, size_t const i);
 //                 |
-int               _pre_render(struct Canvas* canvas);
+size_t            _pre_render(struct Canvas* canvas);
 //                 |
 void              _bubble(_t_move_obj* data);
 //                 |

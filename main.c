@@ -2,7 +2,7 @@
 # include "inc/GMRender.h"
 
 void debug(void) {
-  static bool debug = true;
+  static bool debug = false;
   if (debug) {
     char s[50];
     bzero(s, 50);
@@ -10,10 +10,14 @@ void debug(void) {
     DrawText(s, 0,0, 30, WHITE);
   }
   if (IsKeyPressed(KEY_BACKSPACE)) {
-    if (debug)
+    if (debug) {
       debug = false;
-    else
+      SetWindowOpacity(1);
+    }
+    else {
       debug = true;
+      SetWindowOpacity(0.8);
+    }
   }
 }
 
@@ -31,13 +35,13 @@ int main() {
     addToCanvas(&test, 0, &canvas->_Game); }
   for (size_t i = 0; i < NB_ITEM; i++) {
     addToCanvas(&test2, 0, &canvas->_Game); }
-  while (!WindowShouldClose()) {
-    debug();
-    TIME_START;
     rmFromRenderById(2, canvas);
+  while (!WindowShouldClose()) {
     BeginDrawing();
+    TIME_START;
+    debug();
     ClearBackground(BLACK);
-    _pre_render(canvas);
+    Render(canvas);
     EndDrawing();
     LOG_MSG(TIME_STOP);
   }

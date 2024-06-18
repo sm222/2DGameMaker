@@ -37,7 +37,7 @@ static void* _sort(void* data) {
   return data;
 }
 
-static int _move_obj(struct Layers* layer) {
+static size_t _move_obj(struct Layers* layer) {
   const size_t nb = layer->_SizeRenderList;
   if (!nb)
     return 0;
@@ -59,8 +59,9 @@ static int _move_obj(struct Layers* layer) {
   return nb;
 }
 
-int _pre_render(struct Canvas* canvas) {
-  _move_obj(&canvas->_Game);
-  _move_obj(&canvas->_Ui);
-  return 0;
+size_t _pre_render(struct Canvas* canvas) {
+  size_t items = 0;
+  items += _move_obj(&canvas->_Game);
+  items += _move_obj(&canvas->_Ui);
+  return items;
 }
