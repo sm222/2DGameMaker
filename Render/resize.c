@@ -38,29 +38,29 @@ static short edit_size(short nb) {
   return nb;
 }
 
-short resize_ui(t_Canvas* canvas, short dir) {
+short resizeUi(t_Canvas* canvas, short dir) {
   if (!canvas) {
-    LOG_WAR("resize_game no canvas");
+    LOG_WAR("resizeGame no canvas");
     return 1;
   }
   return _resize_t_Layers(&canvas->_Ui, edit_size(dir));
 }
 
-short resize_game(t_Canvas* canvas, short dir) {
+short resizeGame(t_Canvas* canvas, short dir) {
   if (!canvas) {
-    LOG_WAR("resize_game no canvas");
+    LOG_WAR("resizeGame no canvas");
     return 1;
   }
   return _resize_t_Layers(&canvas->_Game, edit_size(dir));
 }
 
-short resize_auto(t_Layers* layer, size_t const y) {
+short resizeLayerAuto(t_Layers* layer, size_t const y) {
   if (!layer) {
-    LOG_WAR("resize_auto no layer pass");
+    LOG_WAR("resizeLayerAuto no layer pass");
     return 1;
   }
   if (y > layer->_SizeRenderList) {
-    LOG_WAR("resize_auto out of range y");
+    LOG_WAR("resizeLayerAuto out of range y");
     return 1;
   }
     size_t size = ((sizeof(**layer->_RenderList) * layer->_LenRenderList[y]));
@@ -68,18 +68,18 @@ short resize_auto(t_Layers* layer, size_t const y) {
     size = ((sizeof(**layer->_RenderList) * layer->_LenRenderList[y]) * 2);
     layer->_RenderList[y] = realloc(layer->_RenderList[y], size);
     bzero(layer->_RenderList[y] +  layer->_LenRenderList[y],  size / 2);
-    LOG_MSG("resize_auto bigger");
+    LOG_MSG("resizeLayerAuto bigger");
   }
   else if (layer->_ItemNumber[y] < layer->_LenRenderList[y] / 4 && layer->_LenRenderList[y] > NB_ITEM) {
     size = ((sizeof(**layer->_RenderList) * layer->_LenRenderList[y]) / 2);
     layer->_RenderList[y] = realloc(layer->_RenderList[y], size);
-    LOG_MSG("resize_auto smaler");
+    LOG_MSG("resizeLayerAuto smaler");
   }
   if (layer->_RenderList[y]) {
     layer->_LenRenderList[y] = (size / sizeof(**layer->_RenderList));
     return 0;
   }
-  LOG_ERR("resize_auto calloc fail");
+  LOG_ERR("resizeLayerAuto calloc fail");
   layer->_LenRenderList[y] = 0;
   return 1;
 }

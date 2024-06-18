@@ -45,11 +45,11 @@ static int _setup_RenderValue(struct Canvas* data) {
   return 0;
 }
 
-struct Canvas*  init_canvas(void) {
+struct Canvas*  initCanvas(void) {
   struct Canvas* tmp = NULL;
   tmp = calloc(1, sizeof(*tmp));
   if (!tmp) {
-    perror("malloc init_canvas");
+    perror("malloc initCanvas");
     return (NULL);
   }
   if (_setup_RenderValue(tmp)) {

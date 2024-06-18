@@ -14,16 +14,14 @@
 # define DEF_UI      10
 # define DEF_LAYER   10
 # define NB_ITEM     5
+
+// macro
 # define VEC2(x,y)   (Vector2){x, y}
 # define DEF_CAM     Camera2D{VEC2(0,0),VEC2(0,0), 0, 0}
 
 typedef unsigned long long t_ID;
 typedef unsigned int       t_Depth;
 
-extern t_ID              _id;
-
-# define ID_NB       ((_id))
-# define ID_GET      ((++ID_NB))
 
 //Expression1 ? Expression2 : Expression3;
 
@@ -36,6 +34,8 @@ typedef struct RenderValue {
   Texture*             Texture;
   t_Depth              Depth;
   t_ID                _Id;
+  //* char*           _name // or type ? useful for debug log 
+  //* to print what type of obj was made, just do a str.c_str(); 
 } t_RenderValue;
 
 typedef struct Layers {

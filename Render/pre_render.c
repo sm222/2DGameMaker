@@ -6,7 +6,6 @@ static void _opti_space(_t_move_obj* data) {
     if (i + 1 < data->_len && !data->_list[i] && data->_list[i + 1]) {
       data->_list[i] = data->_list[i + 1];
       data->_list[i + 1] = NULL;
-      LOG_MSG("_move_");
       i = -1;
     }
     i++;
@@ -21,9 +20,7 @@ void  _bubble(_t_move_obj* data) {
         tmp = data->_list[i + 1];
         data->_list[i + 1] = data->_list[i];
         data->_list[i] = tmp;
-        i = 0;
-        LOG_ERR("test");
-        continue;
+        i = -1;
       }
     }
   }
@@ -31,12 +28,12 @@ void  _bubble(_t_move_obj* data) {
 
 static void* _sort(void* data) {
   _t_move_obj* c = (_t_move_obj*)data;
+  TIME_START;
   _opti_space(c);
-  bzero(c->_time, BUFSIZ);
   void  (*ft)(_t_move_obj*);
-
   ft = set_render(NULL);
   ft(data);
+  strcpy(c->_time, TIME_STOP);
   return data;
 }
 
@@ -49,6 +46,7 @@ static int _move_obj(struct Layers* layer) {
   //bool         err[nb];
 
   for (size_t i = 0; i < nb; i++) {
+    bzero(data[i]._time, BUFSIZ);
     data[i]._list = layer->_RenderList[i];
     data[i]._len = layer->_LenRenderList[i];
     //pthread_create(thread[i], NULL, &task, ph[i]);
@@ -58,10 +56,14 @@ static int _move_obj(struct Layers* layer) {
   for (size_t i = 0; i < nb; i++) {
     pthread_join(threads[i], NULL);
   }
+  for (size_t i = 0; i < nb; i++) {
+    printf("[%zu]>%s\n", i, data[i]._time);
+  }
   return nb;
 }
 
 int _pre_render(struct Canvas* canvas) {
   _move_obj(&canvas->_Game);
+  //_move_obj(&canvas->_Ui);
   return 0;
 }

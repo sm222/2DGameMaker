@@ -17,17 +17,17 @@ typedef struct _s_move_obj {
 
 void test(void);
 
-struct Canvas*     init_canvas(void);
-void               free_Canvas(struct Canvas** canvas);
-t_ID               add_to_canvas(t_RenderValue* const obj, size_t const y, t_Layers* layer);
+struct Canvas*     initCanvas(void);
+void               freeCanvas(struct Canvas** canvas);
+t_ID               addToCanvas(t_RenderValue* const obj, size_t const y, t_Layers* layer);
 //                 |
-size_t             rm_layer(t_Layers* layer, size_t const y);
-t_ID               rm_obj_id(t_ID const id, t_Canvas* canvas);
-t_ID               rm_obj_cord(size_t const y, size_t const x, t_Layers* layer);
+size_t             emptyLayer(t_Layers* layer, size_t const y);
+t_ID               rmFroRenderById(t_ID const id, t_Canvas* canvas);
+t_ID               rmFromRenderByCord(size_t const y, size_t const x, t_Layers* layer);
 //                 |
-short              resize_auto(t_Layers* layer, size_t const y);
-short              resize_game(t_Canvas* canvas, short dir);
-short              resize_ui(t_Canvas* canvas, short dir);
+short              resizeLayerAuto(t_Layers* layer, size_t const y);
+short              resizeGame(t_Canvas* canvas, short dir);
+short              resizeUi(t_Canvas* canvas, short dir);
 //                 |
 void              _free_layers(t_Layers* layers);
 bool              _add_list(t_RenderValue*** _RenderList, size_t const i);

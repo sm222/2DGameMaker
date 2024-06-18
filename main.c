@@ -4,21 +4,21 @@
 int main() {
 	TIME_START;
 	t_RenderValue  test, test2;
-	t_Canvas*      canvas = init_canvas();
+	t_Canvas*      canvas = initCanvas();
 	test._Id = 1;
 	test2._Id = 2;
 	test2.Depth = 1;
 	test.Depth = 2;
-	for (size_t i = 0; i < NB_ITEM / 2; i++) {
-		add_to_canvas(&test, 0, &canvas->_Game);
+	for (size_t i = 0; i < NB_ITEM; i++) {
+		addToCanvas(&test, 0, &canvas->_Game);
 	}
-	for (size_t i = 0; i < NB_ITEM / 2; i++) {
-		add_to_canvas(&test2, 0, &canvas->_Game);
+	for (size_t i = 0; i < NB_ITEM; i++) {
+		addToCanvas(&test2, 0, &canvas->_Game);
 	}
 	_pre_render(canvas);
-	resize_auto(&canvas->_Game, 0);
-	resize_game(canvas, 0);
-	resize_game(canvas, 0);
+	resizeLayerAuto(&canvas->_Game, 0);
+	resizeGame(canvas, 0);
+	resizeGame(canvas, 0);
+	freeCanvas(&canvas);
 	LOG_MSG(TIME_STOP);
-	free_Canvas(&canvas);
 }

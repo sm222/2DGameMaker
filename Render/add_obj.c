@@ -2,7 +2,7 @@
 
 static t_ID _push_obj(t_RenderValue* const obj, size_t const y, t_Layers* layer) {
   if (layer->_LenRenderList[y] / 2 < layer->_ItemNumber[y])
-    resize_auto(layer, y);
+    resizeLayerAuto(layer, y);
   if (layer->_ItemNumber[y] < layer->_LenRenderList[y]) {
     size_t x = 0;
     while (x < layer->_LenRenderList[y] && layer->_RenderList[y][x]) { x++; }
@@ -20,7 +20,7 @@ static t_ID _push_obj(t_RenderValue* const obj, size_t const y, t_Layers* layer)
 }
 
 
-t_ID add_to_canvas(t_RenderValue* const obj, size_t const y, t_Layers* layer) {
+t_ID addToCanvas(t_RenderValue* const obj, size_t const y, t_Layers* layer) {
   if (!obj) {
     LOG_ERR("no obj give: add_to_anvas");
     return 0;
@@ -31,7 +31,7 @@ t_ID add_to_canvas(t_RenderValue* const obj, size_t const y, t_Layers* layer) {
     return id;
   }
   if (y > layer->_SizeRenderList) {
-    LOG_WAR("add_to_canvas y out of range");
+    LOG_WAR("addToCanvas y out of range");
     return id;
   }
   id = _push_obj(obj, y, layer);
