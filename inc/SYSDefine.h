@@ -36,4 +36,9 @@
 #  include <raymath.h>
 # endif
 
+# define PROJECT_NAME "name"
+# define PROJECT_W    1000
+# define PROJECT_H    1000
+# define PROJECT_FPS  60
+
 #endif // SYSDEFINE_H
