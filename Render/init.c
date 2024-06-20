@@ -1,6 +1,6 @@
 #include "../inc/GMRender.h"
 
-void* set_render(void* ft) {
+void* set_render(sort_ft(ft)) {
   static sort_ft(tmp) = &_bubble;
   if (ft)
     tmp = ft;

@@ -36,5 +36,5 @@ size_t            _pre_render(struct Canvas* canvas);
 //                 |
 void              _bubble(_t_move_obj* data);
 //                 |
-void*              set_render(void* ft);
+void*              set_render(sort_ft(ft));
 #endif // GMRENDER_H
