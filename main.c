@@ -22,7 +22,7 @@ void debug(void) {
 }
 
 int main() {
-  t_Canvas*      canvas = initCanvas();
+  t_Canvas*      canvas = InitCanvas();
   SetTraceLogLevel(LOG_NONE);
   InitWindow(700,700, "def game");
   SetTargetFPS(60);
@@ -32,10 +32,10 @@ int main() {
   test2.Depth = 1;
   test.Depth = 2;
   for (size_t i = 0; i < NB_ITEM; i++) {
-    addToCanvas(&test, 0, &canvas->_Game); }
+    AddToCanvas(&test, 0, &canvas->_Game); }
   for (size_t i = 0; i < NB_ITEM; i++) {
-    addToCanvas(&test2, 0, &canvas->_Game); }
-    rmFromRenderById(2, canvas);
+    AddToCanvas(&test2, 0, &canvas->_Game); }
+    RmFromRenderById(2, canvas);
   while (!WindowShouldClose()) {
     BeginDrawing();
     TIME_START;
@@ -45,7 +45,7 @@ int main() {
     EndDrawing();
     LOG_MSG(TIME_STOP);
   }
-  freeCanvas(&canvas);
+  FreeCanvas(&canvas);
   CloseWindow();
   return 0;
 }

@@ -17,16 +17,16 @@ typedef struct _s_move_obj {
 
 int                Render(t_Canvas* canvas);
 //                 |
-struct Canvas*     initCanvas(void);
-void               freeCanvas(struct Canvas** canvas);
-t_ID               addToCanvas(t_RenderValue* const obj, size_t const y, t_Layers* layer);
+struct Canvas*     InitCanvas(void);
+void               FreeCanvas(struct Canvas** canvas);
+t_ID               AddToCanvas(t_RenderValue* const obj, size_t const y, t_Layers* layer);
 //                 |
-size_t             emptyLayer(t_Layers* layer, size_t const y);
-unsigned int       rmFromRenderById(t_ID const id, t_Canvas* canvas);
-t_ID               rmFromRenderByCord(size_t const y, size_t const x, t_Layers* layer);
+size_t             EmptyLayer(t_Layers* layer, size_t const y);
+unsigned int       RmFromRenderById(t_ID const id, t_Canvas* canvas);
+t_ID               RmFromRenderByCord(size_t const y, size_t const x, t_Layers* layer);
 //                 |
-short              resizeLayerAuto(t_Layers* layer, size_t const y);
-short              resizeGame(t_Canvas* canvas, short dir);
+short              ResizeLayerAuto(t_Layers* layer, size_t const y);
+short              ResizeGame(t_Canvas* canvas, short dir);
 short              resizeUi(t_Canvas* canvas, short dir);
 //                 |
 void              _free_layers(t_Layers* layers);
@@ -36,5 +36,5 @@ size_t            _pre_render(struct Canvas* canvas);
 //                 |
 void              _bubble(_t_move_obj* data);
 //                 |
-void*              set_render(sort_ft(ft));
+void*              SetRenderAlgo(sort_ft(ft));
 #endif // GMRENDER_H

@@ -40,27 +40,27 @@ static short edit_size(short nb) {
 
 short resizeUi(t_Canvas* canvas, short dir) {
   if (!canvas) {
-    LOG_WAR("resizeGame no canvas");
+    LOG_WAR("ResizeUi no canvas");
     return 1;
   }
   return _resize_t_Layers(&canvas->_Ui, edit_size(dir));
 }
 
-short resizeGame(t_Canvas* canvas, short dir) {
+short ResizeGame(t_Canvas* canvas, short dir) {
   if (!canvas) {
-    LOG_WAR("resizeGame no canvas");
+    LOG_WAR("ResizeGame no canvas");
     return 1;
   }
   return _resize_t_Layers(&canvas->_Game, edit_size(dir));
 }
 
-short resizeLayerAuto(t_Layers* layer, size_t const y) {
+short ResizeLayerAuto(t_Layers* layer, size_t const y) {
   if (!layer) {
-    LOG_WAR("resizeLayerAuto no layer pass");
+    LOG_WAR("ResizeLayerAuto no layer pass");
     return 1;
   }
   if (y > layer->_SizeRenderList) {
-    LOG_WAR("resizeLayerAuto out of range y");
+    LOG_WAR("ResizeLayerAuto out of range y");
     return 1;
   }
     size_t size = ((sizeof(**layer->_RenderList) * layer->_LenRenderList[y]));
@@ -68,18 +68,18 @@ short resizeLayerAuto(t_Layers* layer, size_t const y) {
     size = ((sizeof(**layer->_RenderList) * layer->_LenRenderList[y]) * 2);
     layer->_RenderList[y] = realloc(layer->_RenderList[y], size);
     bzero(layer->_RenderList[y] +  layer->_LenRenderList[y],  size / 2);
-    LOG_MSG("resizeLayerAuto bigger");
+    LOG_MSG("ResizeLayerAuto bigger");
   }
   else if (layer->_ItemNumber[y] < layer->_LenRenderList[y] / 4 && layer->_LenRenderList[y] > NB_ITEM) {
     size = ((sizeof(**layer->_RenderList) * layer->_LenRenderList[y]) / 2);
     layer->_RenderList[y] = realloc(layer->_RenderList[y], size);
-    LOG_MSG("resizeLayerAuto smaler");
+    LOG_MSG("ResizeLayerAuto smaler");
   }
   if (layer->_RenderList[y]) {
     layer->_LenRenderList[y] = (size / sizeof(**layer->_RenderList));
     return 0;
   }
-  LOG_ERR("resizeLayerAuto calloc fail");
+  LOG_ERR("ResizeLayerAuto calloc fail");
   layer->_LenRenderList[y] = 0;
   return 1;
 }

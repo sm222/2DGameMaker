@@ -31,7 +31,7 @@ static void* _sort(void* data) {
   TIME_START;
   _opti_space(c);
   void  (*ft)(_t_move_obj*);
-  ft = set_render(NULL);
+  ft = SetRenderAlgo(NULL);
   ft(data);
   strcpy(c->_time, TIME_STOP);
   return data;

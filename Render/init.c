@@ -1,6 +1,6 @@
 #include "../inc/GMRender.h"
 
-void* set_render(sort_ft(ft)) {
+void* SetRenderAlgo(sort_ft(ft)) {
   static sort_ft(tmp) = &_bubble;
   if (ft)
     tmp = ft;
@@ -45,11 +45,11 @@ static int _setup_RenderValue(struct Canvas* data) {
   return 0;
 }
 
-struct Canvas*  initCanvas(void) {
+struct Canvas*  InitCanvas(void) {
   struct Canvas* tmp = NULL;
   tmp = calloc(1, sizeof(*tmp));
   if (!tmp) {
-    perror("malloc initCanvas");
+    perror("malloc InitCanvas");
     return (NULL);
   }
   if (_setup_RenderValue(tmp)) {

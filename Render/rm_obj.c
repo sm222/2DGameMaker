@@ -25,13 +25,13 @@ static unsigned int  _rm_id(t_ID const id, t_Layers* layer) {
   return nb;
 }
 
-size_t  emptyLayer(t_Layers* layer, size_t const y) {
+size_t  EmptyLayer(t_Layers* layer, size_t const y) {
   if (!layer) {
-    LOG_ERR("emptyLayer no layer givent");
+    LOG_ERR("EmptyLayer no layer givent");
     return 0;
   }
   if (y > layer->_SizeRenderList) {
-    LOG_WAR("emptyLayer y out of bound");
+    LOG_WAR("EmptyLayer y out of bound");
     return 0;
   }
   size_t const tmp = layer->_ItemNumber[y];
@@ -41,9 +41,9 @@ size_t  emptyLayer(t_Layers* layer, size_t const y) {
   return tmp;
 }
 
-unsigned int  rmFromRenderById(t_ID const id, t_Canvas* canvas) {
+unsigned int  RmFromRenderById(t_ID const id, t_Canvas* canvas) {
   if (!canvas || id == 0) {
-    LOG_ERR("invalid arg rmFromRenderById");
+    LOG_ERR("invalid arg RmFromRenderById");
     return 0;
   }
   unsigned int  _id = 0;
@@ -55,23 +55,23 @@ unsigned int  rmFromRenderById(t_ID const id, t_Canvas* canvas) {
 }
 
 
-t_ID rmFromRenderByCord(size_t const y, size_t const x, t_Layers* layer) {
+t_ID RmFromRenderByCord(size_t const y, size_t const x, t_Layers* layer) {
   if (!layer) {
-    LOG_ERR("rmFromRenderByCord no layer");
+    LOG_ERR("RmFromRenderByCord no layer");
     return 0;
   }
   if (layer->_SizeRenderList < y) {
-    LOG_WAR("rmFromRenderByCord out of bound y");
+    LOG_WAR("RmFromRenderByCord out of bound y");
     return 0;
   }
   if (layer->_LenRenderList[y] < x) {
-    LOG_WAR("rmFromRenderByCord out of bound x");
+    LOG_WAR("RmFromRenderByCord out of bound x");
     return 0;
   }
   if (!layer->_RenderList[y][x]) {
-    LOG_WAR("rmFromRenderByCord no item to tose cord");
+    LOG_WAR("RmFromRenderByCord no item to tose cord");
     return 0;
   }
-  LOG_MSG("rmFromRenderByCord sucsess");
+  LOG_MSG("RmFromRenderByCord sucsess");
   return _wipe_obj(layer, y, x);
 }
