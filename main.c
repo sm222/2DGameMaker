@@ -7,7 +7,8 @@ void debug(void) {
     char s[50];
     bzero(s, 50);
     snprintf(s, 50, "fps = %d", GetFPS());
-    DrawText(s, 0,0, 30, WHITE);
+    //DrawText(s, 0,0, 30, WHITE);
+    DrawTextEx((Font){FONT_DEFAULT}, s, VEC2DEF, 30, 1, WHITE);
   }
   if (IsKeyPressed(KEY_BACKSPACE)) {
     if (debug) {
@@ -41,6 +42,8 @@ int main() {
     TIME_START;
     debug();
     ClearBackground(BLACK);
+    DrawTriangle(VEC2(100, 100), VEC2(100, 200), VEC2(200, 400), BLUE);
+    DrawRectangleLinesEx((Rectangle){0,0, 100 , 100}, 1, BLUE);
     Render(canvas);
     EndDrawing();
     LOG_MSG(TIME_STOP);
