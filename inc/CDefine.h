@@ -6,7 +6,7 @@
 # include <stdio.h>
 
 // C - define
-
+# include "CType.h"
 //
 
 # define MAX_CANVAS  10
@@ -24,45 +24,24 @@
 // Font
 # define DEFFONT     (Font){FONT_DEFAULT}
 
+// type
 typedef unsigned long long t_ID;
 typedef unsigned int       t_Depth;
 
-
-//Expression1 ? Expression2 : Expression3;
-
 # define ID_VALID(objId) (objId == (t_ID)-1 ? 0 : objId)
-
-typedef struct RenderLine {
-  Vector2 start;
-  Vector2 end;
-  float   thick;
-  Color   color;
-} RenderLine;
-
-typedef struct RenderRect {
-  Rectangle rectangle;
-  float     angle;
-  Color     color;
-} RenderRect;
-
-
-typedef union CRenderType {
-  RenderLine*     line;
-  RenderRect*     rect;
-} CRenderType;
-
 
 typedef struct RenderValue {
   bool                 Visible;
   bool                _Render;
   unsigned char        Type;
-  CRenderType          CRenderType;
+  CRenderType          CRenderType; //?use to store ptr of the obj
   //Vector2*             Pos;
   //Texture*             Texture;
   t_Depth              Depth;
   t_ID                _Id;
   //* char*           _name // or type ? useful for debug log 
-  //* to print what type of obj was made, just do a str.c_str(); 
+  //* to print what type of obj was made, just do a str.c_str();
+  //* could also do remove by name
 } t_RenderValue;
 
 typedef struct Layers {
