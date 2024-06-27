@@ -32,16 +32,17 @@ typedef unsigned int       t_Depth;
 
 typedef struct RenderValue {
   bool                 Visible;
-  bool                _Render;
   unsigned char        Type;
-  CRenderType          CRenderType; //?use to store ptr of the obj
-  //Vector2*             Pos;
-  //Texture*             Texture;
   t_Depth              Depth;
   t_ID                _Id;
-  //* char*           _name // or type ? useful for debug log 
-  //* to print what type of obj was made, just do a str.c_str();
-  //* could also do remove by name
+  CRenderType          CRenderType; //?use to store ptr of the obj
+  /*
+! Vector2*             Pos;
+! Texture*             Texture;
+* char*               _name // or type ? useful for debug log 
+* to print what type of obj was made, just do a str.c_str();
+* could also do remove by name
+  */
 } t_RenderValue;
 
 typedef struct Layers {

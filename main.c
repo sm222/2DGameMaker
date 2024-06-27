@@ -1,13 +1,33 @@
 # include "C_tools/inc/C_tool.h"
 # include "inc/GMRender.h"
 
+#define len 200
+
+int fpsTarget = 60;
+
+static void dfps(void) {
+  static int f[len];
+  static int j = len;
+  Image img;
+  img = GenImageColor(200, 300, BLACK);
+
+  if (j == 0)
+    j = len;
+  f[--j] = GetFPS();
+  for (size_t i = len; i > 0; --i) {
+    DrawPixel(i, ((f[i] * -1)) + 300, RED);
+    ImageDrawPixel(&img, i, f[i], RED);
+  }
+  Texture2D t = LoadTextureFromImage(img);
+  DrawTexture(t, 300, 300, WHITE);
+}
+
 void debug(void) {
   static bool debug = false;
   if (debug) {
     char s[50];
     bzero(s, 50);
     snprintf(s, 50, "fps = %d", GetFPS());
-    //DrawText(s, 0,0, 30, WHITE);
     DrawTextEx((Font){FONT_DEFAULT}, s, VEC2DEF, 30, 1, WHITE);
   }
   if (IsKeyPressed(KEY_BACKSPACE)) {
@@ -39,14 +59,13 @@ int main() {
     RmFromRenderById(2, canvas);
   while (!WindowShouldClose()) {
     BeginDrawing();
-    TIME_START;
+    //TIME_START;
     debug();
     ClearBackground(BLACK);
-    DrawTriangle(VEC2(100, 100), VEC2(100, 200), VEC2(200, 400), BLUE);
-    DrawRectangleLinesEx((Rectangle){0,0, 100 , 100}, 1, BLUE);
+    dfps();
     Render(canvas);
     EndDrawing();
-    LOG_MSG(TIME_STOP);
+    //LOG_MSG(TIME_STOP);
   }
   FreeCanvas(&canvas);
   CloseWindow();
