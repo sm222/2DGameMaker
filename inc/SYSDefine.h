@@ -41,4 +41,15 @@
 # define PROJECT_H    1000
 # define PROJECT_FPS  60
 
+
+typedef enum DEV_LV {
+    none__,
+    term__,
+    consol__,
+}   DEV_LV;
+
+# ifndef DEV_LOG
+#  define DEV_LOG none__
+# endif
+
 #endif // SYSDEFINE_H

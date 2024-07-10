@@ -1,13 +1,13 @@
 #include "../inc/GMRender.h"
 
-static t_ID  _wipe_obj(t_Layers* layer, size_t const y, size_t const x) {
-  t_ID const id = layer->_RenderList[y][x]->_Id;
+static t_ID  _wipe_obj(t_Layers* layer, const size_t y, const size_t x) {
+  const t_ID id = layer->_RenderList[y][x]->_Id;
   layer->_ItemNumber[y]--;
   layer->_RenderList[y][x] = NULL;
   return id;
 }
 
-static unsigned int  _rm_id(t_ID const id, t_Layers* layer) {
+static unsigned int  _rm_id(const t_ID id, t_Layers* layer) {
   unsigned int  nb = 0;
   char    buff[BUFSIZ];
 
@@ -25,7 +25,7 @@ static unsigned int  _rm_id(t_ID const id, t_Layers* layer) {
   return nb;
 }
 
-size_t  EmptyLayer(t_Layers* layer, size_t const y) {
+size_t  EmptyLayer(t_Layers* layer, const size_t y) {
   if (!layer) {
     LOG_ERR("EmptyLayer no layer givent");
     return 0;
@@ -34,14 +34,14 @@ size_t  EmptyLayer(t_Layers* layer, size_t const y) {
     LOG_WAR("EmptyLayer y out of bound");
     return 0;
   }
-  size_t const tmp = layer->_ItemNumber[y];
+  const size_t tmp = layer->_ItemNumber[y];
   bzero(layer->_RenderList[y], sizeof(**layer->_RenderList) * tmp);
   layer->_ItemNumber[y] = 0;
   LOG_MSG("layer clean");
   return tmp;
 }
 
-unsigned int  RmFromRenderById(t_ID const id, t_Canvas* canvas) {
+unsigned int  RmFromRenderById(const t_ID id, t_Canvas* canvas) {
   if (!canvas || id == 0) {
     LOG_ERR("invalid arg RmFromRenderById");
     return 0;
@@ -55,7 +55,7 @@ unsigned int  RmFromRenderById(t_ID const id, t_Canvas* canvas) {
 }
 
 
-t_ID RmFromRenderByCord(size_t const y, size_t const x, t_Layers* layer) {
+t_ID RmFromRenderByCord(const size_t y, const size_t x, t_Layers* layer) {
   if (!layer) {
     LOG_ERR("RmFromRenderByCord no layer");
     return 0;

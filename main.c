@@ -47,16 +47,19 @@ int main() {
   SetTraceLogLevel(LOG_NONE);
   InitWindow(700,700, "def game");
   SetTargetFPS(60);
-  t_RenderValue  test, test2;
+  t_RenderValue  test;//, test2;
   test._Id = 1;
-  test2._Id = 2;
-  test2.Depth = 1;
+  //test2._Id = 2;
+  //test2.Depth = 1;
   test.Depth = 2;
-  for (size_t i = 0; i < NB_ITEM; i++) {
-    AddToCanvas(&test, 0, &canvas->_Game); }
-  for (size_t i = 0; i < NB_ITEM; i++) {
-    AddToCanvas(&test2, 0, &canvas->_Game); }
-    RmFromRenderById(2, canvas);
+  //for (size_t i = 0; i < NB_ITEM; i++) {
+  //  AddToCanvas(&test, 0, &canvas->_Game); }
+  //for (size_t i = 0; i < NB_ITEM; i++) {
+  //  AddToCanvas(&test2, 0, &canvas->_Game); }
+  //  RmFromRenderById(2, canvas);
+  AddToCanvas(&test, 5, &canvas->_Game);
+  AddToCanvas(&test, 1, &canvas->_Game);
+  AddToCanvas(&test, 0, &canvas->_Game);
   while (!WindowShouldClose()) {
     BeginDrawing();
     //TIME_START;

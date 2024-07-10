@@ -54,7 +54,7 @@ short ResizeGame(t_Canvas* canvas, short dir) {
   return _resize_t_Layers(&canvas->_Game, edit_size(dir));
 }
 
-short ResizeLayerAuto(t_Layers* layer, size_t const y) {
+short ResizeLayerAuto(t_Layers* layer, const size_t y) {
   if (!layer) {
     LOG_WAR("ResizeLayerAuto no layer pass");
     return 1;

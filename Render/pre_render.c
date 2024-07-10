@@ -38,20 +38,31 @@ static void* _sort(void* data) {
 }
 
 static size_t _move_obj(struct Layers* layer) {
-  const size_t nb = layer->_SizeRenderList;
+  size_t nb = layer->_SizeRenderList;
+
+  for (size_t i = 0; i < layer->_SizeRenderList; i++) {
+    if (!layer->_Edit[i])
+      nb--;
+  }
   if (!nb)
     return 0;
-  pthread_t    threads[nb];
-  _t_move_obj  data[nb];
-  //bool         err[nb];
-
+  size_t      j = 0;
+  pthread_t   threads[nb];
+  _t_move_obj data[nb];
   for (size_t i = 0; i < nb; i++) {
     bzero(data[i]._time, TMP_BUFF_SIZE);
-    data[i]._list = layer->_RenderList[i];
-    data[i]._len = layer->_LenRenderList[i];
+    while (i + j <  layer->_SizeRenderList && !layer->_Edit[i + j]) {
+      j++;
+    }
+    data[i]._list = layer->_RenderList[i + j];
+    data[i]._len = layer->_LenRenderList[i + j];
+    printf("%zu > %zu \n", i , i + j);
     //pthread_create(thread[i], NULL, &task, ph[i]);
-    /*const int r =*/pthread_create(&threads[i], NULL, &_sort, &data[i]);
+    /*const int r =*/
+    pthread_create(&threads[i], NULL, &_sort, &data[i]);
+    layer->_Edit[i + j] = false;
     //err[i] = (r != 0 ? true : false);
+    j = 0;
   }
   for (size_t i = 0; i < nb; i++) {
     pthread_join(threads[i], NULL);

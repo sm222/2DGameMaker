@@ -7,7 +7,7 @@ void* SetRenderAlgo(sort_ft(ft)) {
   return tmp;
 }
 
-bool _add_list(t_RenderValue*** _RenderList, size_t const i) {
+bool _add_list(t_RenderValue*** _RenderList, const size_t i) {
   if (!_RenderList[i]) {
     _RenderList[i] = calloc(NB_ITEM, sizeof(**_RenderList));
     if (!_RenderList[i]) {
@@ -40,8 +40,10 @@ static int _setup_RenderValue(struct Canvas* data) {
       return 2;
     }
   }
-  data->_Ui._SizeRenderList = DEF_UI;
   data->_Game._SizeRenderList = DEF_LAYER;
+  data->_Ui._SizeRenderList = DEF_UI;
+  bzero(data->_Game._Edit, sizeof(*data->_Game._Edit) * DEF_LAYER);
+  bzero(data->_Ui._Edit, sizeof(*data->_Ui._Edit) * DEF_UI);
   return 0;
 }
 

@@ -1,6 +1,6 @@
 #include "../inc/GMRender.h"
 
-static t_ID _push_obj(t_RenderValue* const obj, size_t const y, t_Layers* layer) {
+static t_ID _push_obj(t_RenderValue* obj, const size_t y, t_Layers* layer) {
   if (layer->_LenRenderList[y] / 2 < layer->_ItemNumber[y])
     ResizeLayerAuto(layer, y);
   if (layer->_ItemNumber[y] < layer->_LenRenderList[y]) {
@@ -20,7 +20,7 @@ static t_ID _push_obj(t_RenderValue* const obj, size_t const y, t_Layers* layer)
 }
 
 
-t_ID AddToCanvas(t_RenderValue* const obj, size_t const y, t_Layers* layer) {
+t_ID AddToCanvas(t_RenderValue* obj, const size_t y, t_Layers* layer) {
   if (!obj) {
     LOG_ERR("no obj give: add_to_anvas");
     return 0;
@@ -35,7 +35,9 @@ t_ID AddToCanvas(t_RenderValue* const obj, size_t const y, t_Layers* layer) {
     return id;
   }
   id = _push_obj(obj, y, layer);
-  if (id != 0)
+  if (id != 0) {
     LOG_MSG("new obj");
+    layer->_Edit[y] = true;
+  }
   return id;
 }

@@ -19,18 +19,18 @@ int                Render(t_Canvas* canvas);
 //                 |
 struct Canvas*     InitCanvas(void);
 void               FreeCanvas(struct Canvas** canvas);
-t_ID               AddToCanvas(t_RenderValue* const obj, size_t const y, t_Layers* layer);
+t_ID               AddToCanvas(t_RenderValue* obj, const size_t y, t_Layers* layer);
 //                 |
-size_t             EmptyLayer(t_Layers* layer, size_t const y);
-unsigned int       RmFromRenderById(t_ID const id, t_Canvas* canvas);
-t_ID               RmFromRenderByCord(size_t const y, size_t const x, t_Layers* layer);
+size_t             EmptyLayer(t_Layers* layer, const size_t y);
+unsigned int       RmFromRenderById(const t_ID id, t_Canvas* canvas);
+t_ID               RmFromRenderByCord(const size_t y, const size_t x, t_Layers* layer);
 //                 |
-short              ResizeLayerAuto(t_Layers* layer, size_t const y);
+short              ResizeLayerAuto(t_Layers* layer, const size_t y);
 short              ResizeGame(t_Canvas* canvas, short dir);
 short              resizeUi(t_Canvas* canvas, short dir);
 //                 |
 void              _free_layers(t_Layers* layers);
-bool              _add_list(t_RenderValue*** _RenderList, size_t const i);
+bool              _add_list(t_RenderValue*** _RenderList, const size_t i);
 //                 |
 size_t            _pre_render(struct Canvas* canvas);
 //                 |

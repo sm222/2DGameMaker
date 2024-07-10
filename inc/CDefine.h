@@ -50,6 +50,7 @@ typedef struct Layers {
   t_RenderValue***  _RenderList;
   size_t            _LenRenderList[MAX_LAYER + 1];
   size_t            _ItemNumber[MAX_LAYER + 1];
+  bool              _Edit[MAX_LAYER + 1];
 } t_Layers;
 
 
