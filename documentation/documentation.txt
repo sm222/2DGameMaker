@@ -1,0 +1,34 @@
+                    Manuel
+
+        1   Introduction
+        1.1 Tools
+        1.2 Internal tools
+        __________________
+
+        2   
+        2.1 
+        2.2 
+
+
+
+
+
+
+
+[1]
+    This project is made for fun and learning. We can't promise good results with speed and security.
+    We want to start small but go bigger with time and all help is welcome.
+
+    We are building the 2D part in priority but we also want to support 3D,
+    The majority of the project will be in C++ but some parts will be in C.
+    some scripts or tools can be in other languages (ex: bash scripts, Python, etc).
+
+[1.1]
+    the tools we are using to dev on the project will mostly be 
+        - Valgrind
+        - Git
+        - VsCod
+        - Vim
+        - nano
+
+
