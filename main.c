@@ -51,7 +51,9 @@ int main() {
   test._Id = 1;
   //test2._Id = 2;
   //test2.Depth = 1;
-  test.Depth = 2;
+  Render2DTex *t = calloc(1, sizeof(Render2DTex));
+  test.CRenderType.tex = t;
+  test.CRenderType.tex->position.z = 2;
   //for (size_t i = 0; i < NB_ITEM; i++) {
   //  AddToCanvas(&test, 0, &canvas->_Game); }
   //for (size_t i = 0; i < NB_ITEM; i++) {

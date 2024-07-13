@@ -25,25 +25,23 @@
 # define DEFFONT     (Font){FONT_DEFAULT}
 
 // type
-typedef unsigned long long t_ID;
-typedef unsigned int       t_Depth;
+typedef unsigned long t_ID;
 
 # define ID_VALID(objId) (objId == (t_ID)-1 ? 0 : objId)
 
 typedef struct RenderValue {
   bool                 Visible;
   unsigned char        Type;
-  t_Depth              Depth;
-  t_ID                _Id;
+  t_ID                _Id;   //! set once never edit it
   CRenderType          CRenderType; //?use to store ptr of the obj
-  /*
-! Vector2*             Pos;
-! Texture*             Texture;
-* char*               _name // or type ? useful for debug log 
-* to print what type of obj was made, just do a str.c_str();
-* could also do remove by name
-  */
+  char*               _name; // or type ? useful for debug log just do a str.c_str();
 } t_RenderValue;
+
+typedef struct layerData {
+  Camera2D*      _cam;
+  Camera3D*      _cam3D;
+  unsigned char  _type;
+} layerData;
 
 typedef struct Layers {
   size_t            _SizeRenderList;

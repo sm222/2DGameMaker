@@ -16,7 +16,7 @@ void  _bubble(_t_move_obj* data) {
   t_RenderValue* tmp;
   for (size_t i = 0; i < data->_len && data->_list[i]; i++) {
     if (data->_list[i] && data->_list[i + 1]) {
-      if (data->_list[i]->Depth > data->_list[i + 1]->Depth) {
+      if (data->_list[i]->CRenderType.tex->position.z > data->_list[i + 1]->CRenderType.tex->position.z) {
         tmp = data->_list[i + 1];
         data->_list[i + 1] = data->_list[i];
         data->_list[i] = tmp;
