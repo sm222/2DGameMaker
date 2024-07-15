@@ -4,6 +4,7 @@
         1.1 Require tools
         1.2 Tools
         1.3 Internal tools
+        1.4 
         __________________
 
         2   Setup
@@ -25,14 +26,14 @@
     Require tools to work on the projet
         Os
             - Linux
-            - MacOs
+            - MacOs (you need to use brew for some dependency)
             - Windows (not support yet)
         
         Tools
             - Makefile        https://www.gnu.org/software/make/manual/make.html
+            - gcc             https://gcc.gnu.org/
             - raylib          https://www.raylib.com/
             \ and all dependency
-            - gcc             https://gcc.gnu.org/
         
     If you work on Linux or MacOs
         - bash or zsh (or equivalent) to run .sh scrips
@@ -49,6 +50,8 @@
 [1.3]
     Home made tools
         - C_tools             https://github.com/sm222/C_tools.git
+            gcc
+            libncurses5-dev (sudo apt install)
 
 
 
