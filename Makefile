@@ -39,7 +39,7 @@ SRCS	=	main.c\
 OBJS	=	$(SRCS:.c=.o)
 
 all: render $(NAME)
-	@printf $(L)$(CYN) \n\n			correction is made by $(USER)\n\n  $(RESET)\n$(L)
+	@printf $(L)$(CYN) \n\n			compiled by $(USER)\n\n  $(RESET)\n$(L)
 
 $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS)  -I/usr/local/include -lraylib -lGL -lm -lrt -lX11 $(RENDER_DIR)$(RENDER_LIB) C_tools/C_tools.a -o $(NAME)
