@@ -20,7 +20,6 @@ dependency=(
     'make'
     'gcc'
     'git'
-    'vim'
     'valgrind'
     'uname'
 )
@@ -54,7 +53,7 @@ libs_Linux=(
     'libasound2-dev'
     'libx11-dev'
     'libxrandr-dev'
-    #'bbqdqwdqwdb'
+    'bbqdqwdqwdb'
     'libxi-dev'
     'libgl1-mesa-dev'
     'libglu1-mesa-dev'
@@ -103,6 +102,7 @@ miss=''
         read -p "do you want to install them? 1=yes 2=no (1/2): " confirm
         if [ $confirm == 1 ]
             then
+            echo 'sudo apt install' "$miss"
             sudo apt install $miss
             printf \%s\ "$RESET \n$GRN \bdone$RESET\n"
             $0 # recursive < - - -
@@ -128,5 +128,4 @@ if [ $code != 0 ]
 fi
 printf \%s\ "\bready to go\n"
 look_libs;
-cd .. && git pull --all && git switch dev && make
 echo $0 finish
