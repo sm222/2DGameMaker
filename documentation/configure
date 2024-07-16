@@ -53,7 +53,6 @@ libs_Linux=(
     'libasound2-dev'
     'libx11-dev'
     'libxrandr-dev'
-    'bbqdqwdqwdb'
     'libxi-dev'
     'libgl1-mesa-dev'
     'libglu1-mesa-dev'
@@ -99,20 +98,17 @@ miss=''
     if [ $len != 0 ]
         then
         echo missing libs: $miss
-        read -p "do you want to install them? 1=yes 2=no (1/2): " confirm
-        if [ $confirm == 1 ]
-            then
-            echo 'sudo apt install' "$miss"
+        read -p "do you want to install them? (Y/n): " answer
+		case $answer in
+		[yY]|[yY][eE][sS])
+			echo 'sudo apt install' "$miss"
             sudo apt install $miss
             printf \%s\ "$RESET \n$GRN \bdone$RESET\n"
-            $0 # recursive < - - -
-        elif [ $confirm == 2 ]
-            then
-            printf \%s\ "$RESET \n$GRN \bexit$RESET\n"
-            exit 0
-        else
-            printf \%s\ "???\n"
-            exit 2
+            $0 ;; # recursive < - - -
+		*)
+			printf \%s\ "$RESET \n$GRN \bexit$RESET\n"
+			exit 1 ;;
+		esac
     fi
 fi
 return $err
