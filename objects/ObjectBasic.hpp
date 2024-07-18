@@ -9,33 +9,44 @@ class ObjectBasic {
 //	The building blocks of any game
 
 	protected:
-		id_t								id; 		// Stores a unique object id
+		id_t								id; 		// Stores the object's unique id
 		std::string					name;		// Stores the object name
 		std::string					type;		// Stores the object type
-
-/// vector<std::string>	tags			// Stores all the object's tags							( if any )
-//	Object							parent		// Stores the parent object									( if any )
-//	vector<ObjectBasic>	children	// Stores all the object's children objects	( if any )
 
 //	ScriptRender				render		// Stores the render data and methods
 //	ScriptPhysic				physic		// Stores the physic data and methods
 //	ScriptBasic					script		// Stores all other data and methods
+
+//	ObjectBasic					*parent		// Stores the parent of this object					( if any )
+//  GroupBasic					*children	// Stores the children this object has			( if any )
+//	vector<GroupBasics>	groups		// Stores the groups this object belongs to	( if any )
 
 	public:
 		ObjectBasic();
 		~ObjectBasic();
 
 		//	Accessers
-
 		id_t				getId();
 		std::string	getName();
 		std::string	getType();
+
+		ObjectBasic	*getParent();
+		GroupBasic	*getChildren();
+		GroupBasic	*getSiblings(); // = getParent()->getChildren() minus yourself
 
 		setId( id_t id );
 		setName( std::string name );
 		setType( std::string type );
 
+		setParent( ObjectBasic *parent );
+
 		//	Methods
+
+		void addChild( ObjectBasic *child );
+		void removeChild( ObjectBasic *child );
+
+		void addSibling( ObjectBasic *sibling );
+		void removeSibling( ObjectBasic *sibling );
 
 
 };
