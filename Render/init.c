@@ -51,11 +51,11 @@ struct Canvas*  InitCanvas(void) {
   struct Canvas* tmp = NULL;
   tmp = calloc(1, sizeof(*tmp));
   if (!tmp) {
-    perror("malloc InitCanvas");
+    perror("malloc InitCanvas()");
     return (NULL);
   }
   if (_setup_RenderValue(tmp)) {
-    perror("malloc _setup_RenderValue");
+    perror("malloc _setup_RenderValue()");
     free(tmp);
     tmp = NULL;
     return NULL;

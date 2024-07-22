@@ -1,6 +1,6 @@
 #include "Number.hpp"
 
-// Helper function to handle overflow
+// Helper function to handle overflows
 double Number::handleOverflow(double result) {
     if (result > std::numeric_limits<double>::max()) {
         LOG_MSG("class::Number numeric limits double max");
@@ -21,7 +21,7 @@ Number::Number(double val) : value(val) {}
 Number::Number(float val) : value(val) {}
 Number::Number(int val) : value(val) {}
 
-// Overload assignment operator
+// Overload assignment operators
 Number& Number::operator=(double val) {
     value = val;
     return *this;
@@ -37,7 +37,7 @@ Number& Number::operator=(int val) {
     return *this;
 }
 
-// Overload addition operator
+// Overload addition operators
 Number Number::operator+(const Number& other) const {
     return Number(handleOverflow(value + other.value));
 }
@@ -54,7 +54,7 @@ Number Number::operator+(int val) const {
     return Number(handleOverflow(value + val));
 }
 
-// Overload subtraction operator
+// Overload subtraction operators
 Number Number::operator-(const Number& other) const {
     return Number(handleOverflow(value - other.value));
 }
@@ -71,7 +71,7 @@ Number Number::operator-(int val) const {
     return Number(handleOverflow(value - val));
 }
 
-// Overload multiplication operator
+// Overload multiplication operators
 Number Number::operator*(const Number& other) const {
     return Number(handleOverflow(value * other.value));
 }
@@ -88,7 +88,7 @@ Number Number::operator*(int val) const {
     return Number(handleOverflow(value * val));
 }
 
-// Overload division operator
+// Overload division operators
 Number Number::operator/(const Number& other) const {
     if (other.value == 0) {
         LOG_MSG("class::Number number divide by 0 return nan");
@@ -121,7 +121,7 @@ Number Number::operator/(int val) const {
     return Number(value / val);
 }
 
-// Overload addition assignment operator
+// Overload addition assignment operators
 Number& Number::operator+=(const Number& other) {
     value = handleOverflow(value + other.value);
     return *this;
@@ -142,7 +142,7 @@ Number& Number::operator+=(int val) {
     return *this;
 }
 
-// Overload subtraction assignment operator
+// Overload subtraction assignment operators
 Number& Number::operator-=(const Number& other) {
     value = handleOverflow(value - other.value);
     return *this;
@@ -163,7 +163,7 @@ Number& Number::operator-=(int val) {
     return *this;
 }
 
-// Overload multiplication assignment operator
+// Overload multiplication assignment operators
 Number& Number::operator*=(const Number& other) {
     value = handleOverflow(value * other.value);
     return *this;
@@ -184,7 +184,7 @@ Number& Number::operator*=(int val) {
     return *this;
 }
 
-// Overload division assignment operator
+// Overload division assignment operators
 Number& Number::operator/=(const Number& other) {
     if (other.value == 0) {
         LOG_MSG("class::Number number divide equal by 0 return nan");
@@ -249,7 +249,7 @@ Number Number::operator--(int) {
     return temp;
 }
 
-// Overload equality operator
+// Overload equality operators
 bool Number::operator==(const Number& other) const {
     return value == other.value;
 }
@@ -266,7 +266,7 @@ bool Number::operator==(int val) const {
     return value == val;
 }
 
-// Overload inequality operator
+// Overload inequality operators
 bool Number::operator!=(const Number& other) const {
     return value != other.value;
 }
@@ -283,7 +283,7 @@ bool Number::operator!=(int val) const {
     return value != val;
 }
 
-// Overload less than operator
+// Overload less than operators
 bool Number::operator<(const Number& other) const {
     return value < other.value;
 }
@@ -300,7 +300,7 @@ bool Number::operator<(int val) const {
     return value < val;
 }
 
-// Overload greater than operator
+// Overload greater than operators
 bool Number::operator>(const Number& other) const {
     return value > other.value;
 }
@@ -317,7 +317,7 @@ bool Number::operator>(int val) const {
     return value > val;
 }
 
-// Overload less than or equal to operator
+// Overload less than or equal to operators
 bool Number::operator<=(const Number& other) const {
     return value <= other.value;
 }
@@ -334,7 +334,7 @@ bool Number::operator<=(int val) const {
     return value <= val;
 }
 
-// Overload greater than or equal to operator
+// Overload greater than or equal to operators
 bool Number::operator>=(const Number& other) const {
     return value >= other.value;
 }

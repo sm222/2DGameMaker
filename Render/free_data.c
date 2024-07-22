@@ -9,7 +9,7 @@ void _free_layers(t_Layers* layers) {
 
 void FreeCanvas(struct Canvas** canvas) {
   if (!canvas && !*canvas) {
-    LOG_ERR("no canvas givent");
+    LOG_ERR("FreeCanvas(): no canvas given");
     return ;
   }
   struct Canvas* tmp = *canvas;
