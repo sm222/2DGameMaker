@@ -1,17 +1,17 @@
-RED				=	\x1B[31m
-GRN				=	\x1B[32m
-YEL				=	\x1B[33m
-BLU				=	\x1B[34m
-MAG				=	\x1B[35m
-CYN				=	\x1B[36m
-WHT				=	\x1B[37m
-RESET			=	\x1B[0m
-CLE 			=	\e[1;1H\e[2J
+RED					=	\x1B[31m
+GRN					=	\x1B[32m
+YEL					=	\x1B[33m
+BLU					=	\x1B[34m
+MAG					=	\x1B[35m
+CYN					=	\x1B[36m
+WHT					=	\x1B[37m
+RESET				=	\x1B[0m
+CLE 				=	\e[1;1H\e[2J
 
-NAME			=	game_name
+NAME				=	game_name
 
-RENDER_LIB		=	Render.a
-RENDER_DIR		=	Render/
+RENDER_LIB	=	Render.a
+RENDER_DIR	=	Render/
 
 #		config		#
 
@@ -31,7 +31,7 @@ ifeq ($(shell test -d raylib; echo "$$?"), 0)
     CFLAGS += -D LOCALLIB=1
 endif
 #-fsanitize=address
-RM				=	rm -f
+RM		=	rm -f
 
 # Sources are all .c files
 SRCS	=	main.c\
@@ -51,7 +51,7 @@ render:
 	@printf $(L)$(GRN)render done$(WHT)\n$(L)
 
 mem: all
-	valgrind --leak-check=full --show-leak-kinds=all --trace-children=yes --track-fds=yes --suppressions=/tmp/supp.txt ./minishell 
+	valgrind --leak-check=full --show-leak-kinds=all --trace-children=yes --track-fds=yes --suppressions=/tmp/supp.txt ./minishell
 
 #https://github.com/sm222/C_tools
 
@@ -75,4 +75,4 @@ mc: all clean
 re: fclean all
 
 
-.PHONY: all render
+.PHONY: all mc re fclean clean mem render
