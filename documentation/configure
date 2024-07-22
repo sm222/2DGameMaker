@@ -19,6 +19,7 @@ dependency=(
 	'bash'
 	'make'
 	'gcc'
+	'c++'
 	'git'
 	'valgrind'
 	'uname'
