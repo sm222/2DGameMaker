@@ -11,17 +11,17 @@ RESET="\\x1B[0m"
 
 # look if the bin is there
 function look_val() {
-    v= type -P $1
-    return $v
+	v= type -P $1
+	return $v
 }
 
 dependency=(
-    'bash'
-    'make'
-    'gcc'
-    'git'
-    'valgrind'
-    'uname'
+	'bash'
+	'make'
+	'gcc'
+	'git'
+	'valgrind'
+	'uname'
 )
 
 
@@ -31,42 +31,42 @@ i=${#dependency[@]}
 j=0
 
 err=0
-    while [ $j -lt $i ]
-        do
-            name=$(look_val "${dependency[$j]}")
-            test -z $name
-            val=$?
-            if [ $val != 0 ]
-                then
-                    printf \%s\ "$GRN \b\b√ -$RESET "
-                    ${dependency[$j]} --version | head -n 1
-                else
-                    printf \%s\ "$RED \b\bx -$RESET ${dependency[$j]} \n"
-                    err=$((err + 1))
-            fi
-            j=$((j + 1))
-    done
+	while [ $j -lt $i ]
+	do
+		name=$(look_val "${dependency[$j]}")
+		test -z $name
+		val=$?
+		if [ $val != 0 ]
+			then
+				printf \%s\ "$GRN \b\b√ -$RESET "
+				${dependency[$j]} --version | head -n 1
+			else
+				printf \%s\ "$RED \b\bx -$RESET ${dependency[$j]} \n"
+				err=$((err + 1))
+		fi
+		j=$((j + 1))
+	done
 return $err
 }
 
 libs_Linux=(
-    'libasound2-dev'
-    'libx11-dev'
-    'libxrandr-dev'
-    'libxi-dev'
-    'libgl1-mesa-dev'
-    'libglu1-mesa-dev'
-    'libxcursor-dev'
-    'libxinerama-dev'
-    'libwayland-dev'
-    'libxkbcommon-dev'
+	'libasound2-dev'
+	'libx11-dev'
+	'libxrandr-dev'
+	'libxi-dev'
+	'libgl1-mesa-dev'
+	'libglu1-mesa-dev'
+	'libxcursor-dev'
+	'libxinerama-dev'
+	'libwayland-dev'
+	'libxkbcommon-dev'
 )
 
 
 function look_lib() {
-    (dpkg -l | grep  $1)
-    v=$?
-    return $v
+	(dpkg -l | grep	$1)
+	v=$?
+	return $v
 }
 
 function look_libs() {
@@ -76,52 +76,52 @@ err=0
 
 miss=''
 
-    while [ $j -lt $i ]
-        do
-            name=$(look_lib "${libs_Linux[$j]}")
-            test -z "$name"
-            val=$?
-            if [ $val != 0 ]
-                then
-                    printf \%s\ "$GRN \b\b√ -$RESET"
-                    echo $name
-                else
-                    miss=$(echo -n $miss " ")
-                    miss=$(echo -n $miss ${libs_Linux[$j]})
-                    printf \%s\ "$RED \b\bx -$RESET ${libs_Linux[$j]} \n"
-                    err=$((err + 1))
-            fi
-            j=$((j + 1))
-    done
-    test -z "$miss"
-    len=$?
-    if [ $len != 0 ]
-        then
-        echo missing libs: $miss
-        read -p "do you want to install them? (Y/n): " answer
-		case $answer in
-		[yY]|[yY][eE][sS])
-			echo 'sudo apt install' "$miss"
-            sudo apt install $miss
-            printf \%s\ "$RESET \n$GRN \bdone$RESET\n"
-            $0 ;; # recursive < - - -
-		*)
-			printf \%s\ "$RESET \n$GRN \bexit$RESET\n"
-			exit 1 ;;
-		esac
-    fi
+while [ $j -lt $i ]
+do
+	name=$(look_lib "${libs_Linux[$j]}")
+	test -z "$name"
+	val=$?
+	if [ $val != 0 ]
+		then
+			printf \%s\ "$GRN \b\b√ -$RESET"
+			echo $name
+		else
+			miss=$(printf "$miss ${libs_Linux[$j]}")
+			printf \%s\ "$RED \b\bx -$RESET ${libs_Linux[$j]} \n"
+			err=$((err + 1))
+	fi
+	j=$((j + 1))
+done
+
+test -z "$miss"
+len=$?
+if [ $len != 0 ]
+then
+	echo missing libs: $miss
+	read -p "do you want to install them? (Y/n): " answer
+
+	case $answer in
+	[yY]|[yY][eE][sS])
+		echo 'sudo apt install' "$miss"
+		sudo apt install $miss
+		printf \%s\ "$RESET \n$GRN \bdone$RESET\n"
+		$0 ;; # recursive < - - -
+	*)
+		printf \%s\ "$RESET \n$GRN \bexit$RESET\n"
+		exit 1 ;;
+	esac
 fi
 return $err
 }
 
-
 look_dependency;
 code=$?
 if [ $code != 0 ]
-    then
-        printf \%s\ "missing $code dependency\n"
-        exit 1
+then
+	printf \%s\ "missing $code dependency\n"
+	exit 1
 fi
+
 printf \%s\ "\bready to go\n"
 look_libs;
 echo $0 finish
