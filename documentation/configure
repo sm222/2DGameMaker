@@ -100,7 +100,7 @@ then
 	echo missing libs: $miss
 	read -p "do you want to install them? (Y/n): " answer
 
-	case $answer in
+	case $answer in # NOTE : this is how you should check for yes/no answers ( in this case yes / not yes )
 	[yY]|[yY][eE][sS])
 		echo 'sudo apt install' "$miss"
 		sudo apt install $miss
