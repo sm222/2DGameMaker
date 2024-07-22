@@ -18,11 +18,11 @@ static short _resize_t_Layers(t_Layers* layer, short dir) {
     return 0;
   if (!layer->_RenderList) {
     LOG_ERR("#///////#");
-    perror("_resize_t_Layers");
+    perror("_resize_t_Layers()");
     LOG_ERR("#\\\\\\\\\\\\\\#");
     exit(1);
   }
-  LOG_MSG("resize game");
+  LOG_MSG("resized layers");
   return 0;
 }
 
@@ -40,7 +40,7 @@ static short edit_size(short nb) {
 
 short resizeUi(t_Canvas* canvas, short dir) {
   if (!canvas) {
-    LOG_WAR("ResizeUi no canvas");
+    LOG_WAR("ResizeUi(): no canvas given");
     return 1;
   }
   return _resize_t_Layers(&canvas->_Ui, edit_size(dir));
@@ -48,19 +48,19 @@ short resizeUi(t_Canvas* canvas, short dir) {
 
 short ResizeGame(t_Canvas* canvas, short dir) {
   if (!canvas) {
-    LOG_WAR("ResizeGame no canvas");
+    LOG_WAR("ResizeGame(): no canvas given");
     return 1;
   }
   return _resize_t_Layers(&canvas->_Game, edit_size(dir));
 }
 
-short ResizeLayerAuto(t_Layers* layer, const size_t y) {
+short ResizeLayersAuto(t_Layers* layer, const size_t y) {
   if (!layer) {
-    LOG_WAR("ResizeLayerAuto no layer pass");
+    LOG_WAR("ResizeLayersAuto(): no layer given");
     return 1;
   }
   if (y > layer->_SizeRenderList) {
-    LOG_WAR("ResizeLayerAuto out of range y");
+    LOG_WAR("ResizeLayersAuto(): y out of range");
     return 1;
   }
     size_t size = ((sizeof(**layer->_RenderList) * layer->_LenRenderList[y]));
@@ -68,18 +68,18 @@ short ResizeLayerAuto(t_Layers* layer, const size_t y) {
     size = ((sizeof(**layer->_RenderList) * layer->_LenRenderList[y]) * 2);
     layer->_RenderList[y] = realloc(layer->_RenderList[y], size);
     bzero(layer->_RenderList[y] +  layer->_LenRenderList[y],  size / 2);
-    LOG_MSG("ResizeLayerAuto bigger");
+    LOG_MSG("ResizeLayersAuto(): made layers bigger");
   }
   else if (layer->_ItemNumber[y] < layer->_LenRenderList[y] / 4 && layer->_LenRenderList[y] > NB_ITEM) {
     size = ((sizeof(**layer->_RenderList) * layer->_LenRenderList[y]) / 2);
     layer->_RenderList[y] = realloc(layer->_RenderList[y], size);
-    LOG_MSG("ResizeLayerAuto smaler");
+    LOG_MSG("ResizeLayersAuto(): made layers smaller");
   }
   if (layer->_RenderList[y]) {
     layer->_LenRenderList[y] = (size / sizeof(**layer->_RenderList));
     return 0;
   }
-  LOG_ERR("ResizeLayerAuto calloc fail");
+  LOG_ERR("ResizeLayersAuto() calloc failed");
   layer->_LenRenderList[y] = 0;
   return 1;
 }

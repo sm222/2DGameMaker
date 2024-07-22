@@ -8,14 +8,14 @@ static int _Draw(const t_Layers* l) {
 
 int Render(t_Canvas* canvas) {
   if (!canvas) {
-    LOG_ERR("Render: no Canvas");
+    LOG_ERR("Render(): no canvas given");
     return 1;
   }
   const size_t total = _pre_render(canvas);
   if (DEV_LOG > none__) {
     char tmp[30];
     bzero(tmp, 30);
-    snprintf(tmp, 30, "total layers %zu", total);
+    snprintf(tmp, 30, "total layer count %zu", total);
     LOG_MSG(tmp);
   }
   BeginDrawing();
