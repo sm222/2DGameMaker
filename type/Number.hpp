@@ -6,7 +6,7 @@
 #include <stdexcept>
 
 extern "C" {
-    #include "../C_tools/inc/C_tool.h" 
+    #include "../C_tools/inc/C_tool.h"
 }
 
 class Number {
@@ -22,54 +22,54 @@ public:
     Number(float val);
     Number(int val);
 
-    // Overload assignment operator
+    // Overload assignment operators
     Number& operator=(double val);
     Number& operator=(float val);
     Number& operator=(int val);
 
-    // Overload addition operator
+    // Overload addition operators
     Number operator+(const Number& other) const;
     Number operator+(double val) const;
     Number operator+(float val) const;
     Number operator+(int val) const;
 
-    // Overload subtraction operator
+    // Overload subtraction operators
     Number operator-(const Number& other) const;
     Number operator-(double val) const;
     Number operator-(float val) const;
     Number operator-(int val) const;
 
-    // Overload multiplication operator
+    // Overload multiplication operators
     Number operator*(const Number& other) const;
     Number operator*(double val) const;
     Number operator*(float val) const;
     Number operator*(int val) const;
 
-    // Overload division operator
+    // Overload division operators
     Number operator/(const Number& other) const;
     Number operator/(double val) const;
     Number operator/(float val) const;
     Number operator/(int val) const;
 
-    // Overload addition assignment operator
+    // Overload addition assignment operators
     Number& operator+=(const Number& other);
     Number& operator+=(double val);
     Number& operator+=(float val);
     Number& operator+=(int val);
 
-    // Overload subtraction assignment operator
+    // Overload subtraction assignment operators
     Number& operator-=(const Number& other);
     Number& operator-=(double val);
     Number& operator-=(float val);
     Number& operator-=(int val);
 
-    // Overload multiplication assignment operator
+    // Overload multiplication assignment operators
     Number& operator*=(const Number& other);
     Number& operator*=(double val);
     Number& operator*=(float val);
     Number& operator*=(int val);
 
-    // Overload division assignment operator
+    // Overload division assignment operators
     Number& operator/=(const Number& other);
     Number& operator/=(double val);
     Number& operator/=(float val);
@@ -83,37 +83,37 @@ public:
     Number& operator--(); // Prefix
     Number operator--(int); // Postfix
 
-    // Overload equality operator
+    // Overload equality operators
     bool operator==(const Number& other) const;
     bool operator==(double val) const;
     bool operator==(float val) const;
     bool operator==(int val) const;
 
-    // Overload inequality operator
+    // Overload inequality operators
     bool operator!=(const Number& other) const;
     bool operator!=(double val) const;
     bool operator!=(float val) const;
     bool operator!=(int val) const;
 
-    // Overload less than operator
+    // Overload less than operators
     bool operator<(const Number& other) const;
     bool operator<(double val) const;
     bool operator<(float val) const;
     bool operator<(int val) const;
 
-    // Overload greater than operator
+    // Overload greater than operators
     bool operator>(const Number& other) const;
     bool operator>(double val) const;
     bool operator>(float val) const;
     bool operator>(int val) const;
 
-    // Overload less than or equal to operator
+    // Overload less than or equal to operators
     bool operator<=(const Number& other) const;
     bool operator<=(double val) const;
     bool operator<=(float val) const;
     bool operator<=(int val) const;
 
-    // Overload greater than or equal to operator
+    // Overload greater than or equal to operators
     bool operator>=(const Number& other) const;
     bool operator>=(double val) const;
     bool operator>=(float val) const;

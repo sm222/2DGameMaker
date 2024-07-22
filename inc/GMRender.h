@@ -25,7 +25,7 @@ size_t             EmptyLayer(t_Layers* layer, const size_t y);
 unsigned int       RmFromRenderById(const t_ID id, t_Canvas* canvas);
 t_ID               RmFromRenderByCord(const size_t y, const size_t x, t_Layers* layer);
 //                 |
-short              ResizeLayerAuto(t_Layers* layer, const size_t y);
+short              ResizeLayersAuto(t_Layers* layer, const size_t y);
 short              ResizeGame(t_Canvas* canvas, short dir);
 short              resizeUi(t_Canvas* canvas, short dir);
 //                 |
