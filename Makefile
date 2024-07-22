@@ -13,7 +13,7 @@ NAME				=	game_name
 RENDER_LIB	=	Render.a
 RENDER_DIR	=	Render/
 
-#		config		#
+#	Configs
 
 ifeq ($(shell uname -s), Darwin)
     L = "
@@ -22,7 +22,7 @@ else
 endif
 
 # Compiler and flags
-CC				=	gcc
+CC					=	gcc
 CFLAGS			=	-Wall -Werror -Wextra -g
 
 

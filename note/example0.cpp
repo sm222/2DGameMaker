@@ -16,18 +16,18 @@
 using std::string;
 using std::map;
 
-// C define
+//	C defines
 #define VEC2(x,y)   (Vector2){x, y}
 #define MAX_CANVAS  10
 #define MAX_LAYER   100
 #define DEF_CAM     Camera2D{VEC2(0,0),VEC2(0,0), 0, 0}
 
 
-//C++ define
+//	C++ defines
 #define MAX_DEF_ROOM 50
 #define Cams    map<string, Camera2D>
 
-// sould be conpatible on C
+//	Should be compatible with C
 struct renderValue {
     bool                visible;
     bool                _rander;
@@ -37,7 +37,7 @@ struct renderValue {
     unsigned long long  _id;
 };
 
-// sould be conpatible on C
+//	Should be compatible with C
 struct Canvas {
     Camera2D*       _camera;
     size_t          _yG, _xG;                 // size in memory

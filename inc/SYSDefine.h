@@ -1,9 +1,9 @@
 #ifndef SYSDEFINE_H
 # define SYSDEFINE_H
 
-# define FT_LINUX 0 // Linux is use
-# define FT_WIN   1 // Windows is use
-# define FT_MAC   2 // Mac is use
+# define FT_LINUX 0 // OS is Linux-based
+# define FT_WIN   1 // OS is Windows
+# define FT_MAC   2 // OS is Mac
 
 # if (unix || __unix || __unix__ || __linux__)
 #  define SYSTYPE FT_LINUX

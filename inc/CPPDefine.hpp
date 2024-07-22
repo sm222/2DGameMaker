@@ -5,7 +5,7 @@ extern "C" {
     # include "CDefine.h"
 }
 
-// C++ - define
+// C++ - defines
 #include <string>
 #include <map>
 

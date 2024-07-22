@@ -21,7 +21,7 @@
 //*     enum      *//
 //*---------------*//
 
-// only set manualy if you go in negativ value
+// !! Only set manually if you go into negative value
 
 typedef enum Example {
   e_Example1,
@@ -66,7 +66,7 @@ struct ExampleH {
 //*   fonctions   *//
 //*---------------*//
 
-// !you shoud not mix (define, enum, struct) and fonctions
+//	!! Don't not confuse define / enum / struct with fonctions
 
 int         example_int(void);
 void        example_void(void);

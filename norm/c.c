@@ -14,7 +14,7 @@ int         example_int(void) {
 
 
 void        example_void(void) {
-	//code here :)
+	//	write code here :)
 }
 
 double      example_double(void) {

@@ -1,46 +1,46 @@
-                    Manuel
+                    Manual
 
         1   Introduction
-        1.1 Require tools
+        1.1 Required tools
         1.2 Tools
         1.3 Internal tools
-        1.4 
+        1.4
         __________________
 
         2   Setup
-        2.1 
-        2.2 
+        2.1
+        2.2
 
 
 
 
 [1]
-    This project is made for fun and learning. We can't promise good results with speed and security.
-    We want to start small but go bigger with time and all help is welcome.
+    This project is made as a hobby and to learn. We can't promise good results with speed and security.
+    We want to start small and increase the scope with time, and as such any help is welcome.
 
-    We are building the 2D part in priority but we also want to support 3D,
-    The majority of the project will be in C++ but some parts will be in C.
+    We are prioritizing building the 2D part, but we also want to support 3D.
+    The majority of the project will be in C++, but some parts will be in C for performance reasons
     Some scripts or tools can be in other languages (ex: bash scripts, Python, etc).
 
 [1.1]
     Require tools to work on the projet
         Os
             - Linux
-            - MacOs (you need to use brew for some dependency)
-            - Windows (not support yet)
-        
+            - MacOS (you need to use brew for some dependency)
+            - Windows (not supported yet)
+
         Tools
             - Makefile        https://www.gnu.org/software/make/manual/make.html
             - gcc             https://gcc.gnu.org/
             - raylib          https://www.raylib.com/
-            \ and all dependency
-        
+            \ and all dependencies
+
     If you work on Linux or MacOs
         - bash or zsh (or equivalent) to run .sh scrips
 
 
 [1.2]
-    The tools we are using to dev on the project will mostly be
+    The tools we are using for this project will mostly be
         - Valgrind            https://valgrind.org/
         - Git                 https://git-scm.com/
         - VsCode              https://code.visualstudio.com/
@@ -56,8 +56,8 @@
 
 
 [2]
-    For start you can use the install.sh ,
-    After using it should look something like this.
+    To get started, you can use the install.sh script,
+    After using it, your repo should look something like this.
 
     2DGameMaker \
                 ├── C_tools
@@ -77,9 +77,8 @@
                 ├── Render
                 └── type
 
-    it can change in the future but the tools shout be at 
-    the root of the project and have one directory by feature.
-
+    It may change in the future but the tools should be at the root
+		of the project and have their own individual directories by feature
 
 
 [2.1]
