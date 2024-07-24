@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"sysdefine.h": "c",
+			"stdio.h": "c",
+			"iosfwd": "cpp",
+			"gmrender.h": "c",
+			"cdefine.h": "c",
+			"unistd.h": "c",
+			"c_tool.h": "c",
+			"raylib.h": "c"
+		}
+	}
+}

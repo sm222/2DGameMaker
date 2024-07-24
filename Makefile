@@ -42,8 +42,8 @@ all: render $(NAME)
 	@printf $(L)$(CYN) \n\n			compiled by $(USER)\n\n  $(RESET)\n$(L)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS)  -I/usr/local/include -lraylib -lGL -lm -lrt -lX11 $(RENDER_DIR)$(RENDER_LIB) C_tools/C_tools.a -o $(NAME)
-#                                                                         -lraylib -lGL -lm -lrt -lX11
+	@$(CC) $(CFLAGS) $(OBJS) -I/usr/local/include -lraylib -lGL -lm -lrt -lX11 $(RENDER_DIR)$(RENDER_LIB) C_tools/C_tools.a -o $(NAME)
+#                                               -lraylib -lGL -lm -lrt -lX11
 
 render:
 	@printf $(L)$(GRN)making $(RENDER_LIB)$(WHT)\n$(L)
