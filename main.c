@@ -5,60 +5,69 @@
 
 int fpsTarget = 60;
 
-static void dfps(void) {
-  static int f[len];
-  static int j = len;
-  Image img;
-  img = GenImageColor(200, 300, BLACK);
+/*
+static Color degrad(int limit, int number) {
+ColorAlphaBlend
 
-  if (j == 0)
-    j = len;
-  f[--j] = GetFPS();
-  for (size_t i = len; i > 0; --i) {
-    DrawPixel(i, ((f[i] * -1)) + 300, RED);
-    ImageDrawPixel(&img, i, f[i], RED);
+}
+ColorAlphaBlend()
+*/
+
+
+static void dfps(int ofset_x, int ofset_y ) {
+  static int array[len];
+  for (size_t i = 0; i < len - 1; i++) {
+    Color c = GREEN;
+    if (array[i] < 60) {
+      int g = 0;
+      for (int j = 0; j < array[i]; j++) {
+        g += 4;
+      }
+      c.r = 255;
+      c.g = g;
+    }
+    for (short j = 0; j < 10; j++){
+      DrawPixel(ofset_x + i, (array[i] * -1) + ofset_y + j, c);
+    }
+    array[i] = array[i + 1];
   }
-  Texture2D t = LoadTextureFromImage(img);
-  DrawTexture(t, 300, 300, WHITE);
+  array[len - 1] = ((GetFPS()));
+  DrawFPS(ofset_x + 204, (array[len - 1] * -1) + ofset_y - 3);
 }
 
 void debug(void) {
-  static bool debug = false;
-  if (debug) {
-    char s[50];
-    bzero(s, 50);
-    snprintf(s, 50, "fps = %d", GetFPS());
-    DrawTextEx((Font){FONT_DEFAULT}, s, VEC2DEF, 30, 1, WHITE);
-  }
-  if (IsKeyPressed(KEY_BACKSPACE)) {
-    if (debug) {
-      debug = false;
-      SetWindowOpacity(1);
-    }
-    else {
-      debug = true;
-      SetWindowOpacity(0.8);
-    }
-  }
+  static int fpsV = 60;
+  SetTargetFPS(fpsV);
+  if (IsKeyDown(KEY_UP) && fpsV < 144)
+    fpsV++;
+  if (IsKeyDown(KEY_DOWN) && fpsV > 10)
+    fpsV--;
+}
+
+void editCord(int *x, int *y) {
+  if (IsKeyDown(KEY_A))
+    (*x)--;
+  if (IsKeyDown(KEY_D))
+    (*x)++;
+  if (IsKeyDown(KEY_W))
+    (*y)--;
+  if (IsKeyDown(KEY_S))
+    (*y)++;
 }
 
 int main() {
   t_Canvas*      canvas = InitCanvas();
   SetTraceLogLevel(LOG_NONE);
-  InitWindow(700,700, "def game");
+  InitWindow(2000, 1000, "def game");
   SetTargetFPS(60);
   t_RenderValue  test;//, test2;
+  int x = -2, y = 151;
   test._Id = 1;
   //test2._Id = 2;
   //test2.Depth = 1;
   Render2DTex *t = calloc(1, sizeof(Render2DTex));
   test.CRenderType.tex = t;
   test.CRenderType.tex->position.z = 2;
-  //for (size_t i = 0; i < NB_ITEM; i++) {
-  //  AddToCanvas(&test, 0, &canvas->_Game); }
-  //for (size_t i = 0; i < NB_ITEM; i++) {
-  //  AddToCanvas(&test2, 0, &canvas->_Game); }
-  //  RmFromRenderById(2, canvas);
   AddToCanvas(&test, 5, &canvas->_Game);
   AddToCanvas(&test, 1, &canvas->_Game);
   AddToCanvas(&test, 0, &canvas->_Game);
@@ -67,7 +76,11 @@ int main() {
     //TIME_START;
     debug();
     ClearBackground(BLACK);
-    dfps();
+    editCord(&x, &y);
+    char R[40];
+    sprintf(R, "x%d y%d", x, y);
+    DrawText(R, 40, 40, 20, WHITE);
+    dfps(x, y);
     Render(canvas);
     EndDrawing();
     //LOG_MSG(TIME_STOP);
