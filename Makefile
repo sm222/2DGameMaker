@@ -11,8 +11,7 @@ CLE 				=	\e[1;1H\e[2J
 NAME				=	game_name
 
 RENDER_LIB	=	Render.a
-RENDER_DIR	=	Render/
-
+RENDER_DIR	=	engine/render/
 #	Configs
 
 ifeq ($(shell uname -s), Darwin)

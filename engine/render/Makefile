@@ -5,7 +5,7 @@ CFLAGS	=	-Wall -Werror -Wextra -g
 RM		=	rm -f
 
 LIBFT		=	C_tools.a
-LIBFT_DIR	=	../C_tools/
+LIBFT_DIR	=	../../C_tools/
 
 
 # local
