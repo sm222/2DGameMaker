@@ -6,7 +6,7 @@ Norme:
 		UpperCamelCase
 	Function:
 		lowerCamelCase
-		
+
 
 
 Function/variable:
@@ -29,20 +29,20 @@ feture:
 		save scene to file ?
 		edit live scene ?
 		event system or state machine
-	
+
 	debug:
 		debug flag you can use in file or while compileing the program
 		show box on obj
 		render line or other information on screan
 		print value in terminal or screan
-	
+
 
 	render:
 		render with layer
 		animation built in
 		priority in layer for render
 		render only one layer
-	
+
 	engin
 		-Sprite
 		-room[]
@@ -78,7 +78,7 @@ feture:
 		_imageSpeed
 		_imageXFlip
 		_imageYFlip
-	
+
 	lite obj:
 		_texture
 
@@ -95,7 +95,7 @@ feture:
 	audio:
 		music machine (like a state machine)
 		sound event
-	
+
 	structure:
 		is a sound a obj or somting else conplitely?
 		using array or vector or map ?

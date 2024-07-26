@@ -1,2 +1,2 @@
 # 2DGameMaker
-game game engine made from rayLib https://www.raylib.com/ 
+A small C++ game engine built upon rayLib https://www.raylib.com/

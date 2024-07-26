@@ -5,7 +5,7 @@
 # include <unistd.h>
 # include <stdio.h>
 
-// C - define
+// C - defines
 # include "CType.h"
 //
 
@@ -32,9 +32,9 @@ typedef unsigned long t_ID;
 typedef struct RenderValue {
   bool                 Visible;
   unsigned char        Type;
-  t_ID                _Id;   //! set once never edit it
-  CRenderType          CRenderType; //?use to store ptr of the obj
-  char*               _name; // or type ? useful for debug log just do a str.c_str();
+  t_ID                _Id;   //					!! Never changed after init
+  CRenderType          CRenderType; //	?? use to store ptr of the obj
+  char*               _name; // 				or type ? useful for debug log just do a str.c_str();
 } t_RenderValue;
 
 typedef struct layerData {

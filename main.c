@@ -28,7 +28,7 @@ void debug(void) {
     char s[50];
     bzero(s, 50);
     snprintf(s, 50, "fps = %d", GetFPS());
-    DrawTextEx((Font){FONT_DEFAULT}, s, VEC2DEF, 30, 1, WHITE);
+    DrawTextEx(GetFontDefault(), s, VEC2DEF, 30, 1, WHITE);
   }
   if (IsKeyPressed(KEY_BACKSPACE)) {
     if (debug) {
