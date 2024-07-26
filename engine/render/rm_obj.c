@@ -1,4 +1,4 @@
-#include "../inc/GMRender.h"
+#include "../../inc/GMRender.h"
 
 static t_ID  _wipe_obj(t_Layers* layer, const size_t y, const size_t x) {
   const t_ID id = layer->_RenderList[y][x]->_Id;

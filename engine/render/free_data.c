@@ -1,4 +1,4 @@
-#include "../inc/GMRender.h"
+#include "../../inc/GMRender.h"
 
 void _free_layers(t_Layers* layers) {
   for (size_t i = 0; i < layers->_SizeRenderList; i++) {

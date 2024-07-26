@@ -1,4 +1,4 @@
-#include "../inc/GMRender.h"
+#include "../../inc/GMRender.h"
 
 void* SetRenderAlgo(sort_ft(ft)) {
   static sort_ft(tmp) = &_bubble;

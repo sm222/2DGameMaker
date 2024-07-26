@@ -1,4 +1,4 @@
-#include "../inc/GMRender.h"
+#include "../../inc/GMRender.h"
 
 static int _Draw(const t_Layers* l) {
   (void)l;

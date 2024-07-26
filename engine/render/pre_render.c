@@ -1,4 +1,4 @@
-#include "../inc/GMRender.h"
+#include "../../inc/GMRender.h"
 
 static void _opti_space(_t_move_obj* data) {
   size_t  i = 0;

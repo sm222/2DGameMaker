@@ -1,21 +1,23 @@
 
 #ifndef OBJECTBASIC_HPP_
-#define OBJECTBASIC_HPP_
+# define OBJECTBASIC_HPP_
 
-#	include "../inc/CPPDefine.hpp"
+#	include "../../inc/CPPDefine.hpp"
+
+class GroupBasic;
 
 //	Class declaration
 class ObjectBasic {
 //	The building blocks of any game
 
 	protected:
-		id_t								id; 		// Stores the object's unique id
-		std::string					name;		// Stores the object name
-		std::string					type;		// Stores the object type
+		id_t				id; 		// Stores the object's unique id
+		string			name;		// Stores the object name
+		string			type;		// Stores the object type
 
-//	ScriptRender				render		// Stores the render data and methods
-//	ScriptPhysic				physic		// Stores the physic data and methods
-//	ScriptBasic					script		// Stores all other data and methods
+//	ScriptRender		render		// Stores the render data and methods
+//	ScriptPhysic		physic		// Stores the physic data and methods
+//	ScriptBasic			script		// Stores all other data and methods
 
 //	ObjectBasic					*parent		// Stores the parent of this object					( if any )
 //  GroupBasic					*children	// Stores the children this object has			( if any )
@@ -26,19 +28,19 @@ class ObjectBasic {
 		~ObjectBasic();
 
 		//	Accessers
-		id_t				getId();
-		std::string	getName();
-		std::string	getType();
+		id_t		getId();
+		string	getName();
+		string	getType();
 
 		ObjectBasic	*getParent();
 		GroupBasic	*getChildren();
 		GroupBasic	*getSiblings(); // = getParent()->getChildren() minus yourself
 
-		setId( id_t id );
-		setName( std::string name );
-		setType( std::string type );
+		void	setId( id_t id );
+		void	setName( std::string name );
+		void	setType( std::string type );
 
-		setParent( ObjectBasic *parent );
+		void	setParent( ObjectBasic *parent );
 
 		//	Methods
 

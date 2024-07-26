@@ -1,4 +1,4 @@
-#include "../inc/GMRender.h"
+#include "../../inc/GMRender.h"
 
 static short _resize_t_Layers(t_Layers* layer, short dir) {
   if (layer->_SizeRenderList > 1 && dir < 0) {

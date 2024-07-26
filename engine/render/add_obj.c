@@ -1,4 +1,4 @@
-#include "../inc/GMRender.h"
+#include "../../inc/GMRender.h"
 
 static t_ID _push_obj(t_RenderValue* obj, const size_t y, t_Layers* layer) {
   if (layer->_LenRenderList[y] / 2 < layer->_ItemNumber[y])

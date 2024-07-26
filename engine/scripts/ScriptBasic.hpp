@@ -1,15 +1,17 @@
 
 #ifndef SCRIPTBASIC_HPP_
-#define SCRIPTBASIC_HPP_
+# define SCRIPTBASIC_HPP_
 
-#	include "../inc/CPPDefine.hpp"
+#	include "../../inc/CPPDefine.hpp"
+
+class ObjectBasic;
 
 //	Class declaration
 class ScriptBasic {
 // stores all the data and methods of a specific functionnality of an Object ( like render, physic, script )
 
 	protected:
-		std::string type;			// default = "basic"
+		string 			type;			// default = "basic"
 		ObjectBasic *parent;	// Stores the parent object ( if any )
 
 	public:
@@ -18,10 +20,10 @@ class ScriptBasic {
 		~ScriptBasic();
 
 		//	Accessers
-		getType()
-		getParent()
+		string			getType();
+		ObjectBasic	*getParent();
 
-		setParent( ObjectBasic *parent )
+		void	setParent( ObjectBasic *parent );
 
 		//	Methods
 		virtual void onCreate() = 0; // called when using createObject()
