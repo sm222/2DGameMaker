@@ -32,5 +32,6 @@ raylib/
 *.out
 *.app
 
-# VsCode
+# Others
 *.vscode
+*.DS_Store
