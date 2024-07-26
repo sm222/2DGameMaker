@@ -1,58 +1,43 @@
-RED					=	\x1B[31m
-GRN					=	\x1B[32m
-YEL					=	\x1B[33m
-BLU					=	\x1B[34m
-MAG					=	\x1B[35m
-CYN					=	\x1B[36m
-WHT					=	\x1B[37m
-RESET				=	\x1B[0m
-CLE 				=	\e[1;1H\e[2J
+default: compile
+include Colours.mk
+include Settings.mk
 
-NAME				=	game_name
+# ======== ADDITIONAL SETTINGS ======== #
 
 RENDER_LIB	=	Render.a
 RENDER_DIR	=	engine/render/
-#	Configs
 
+#	local configs
 ifeq ($(shell uname -s), Darwin)
     L = "
 else
     L = '
 endif
 
-# Compiler and flags
-CC					=	gcc
-CFLAGS			=	-Wall -Werror -Wextra -g
-
-
 # local
 ifeq ($(shell test -d raylib; echo "$$?"), 0)
     CFLAGS += -D LOCALLIB=1
 endif
-#-fsanitize=address
+
+# shortcuts
+CC		=	gcc
 RM		=	rm -f
+CPY		=	cp -f
+MDR		=	mkdir -p
 
-# Sources are all .c files
-SRCS	=	main.c\
-
-OBJS	=	$(SRCS:.c=.o)
-
-all: render $(NAME)
-	@printf $(L)$(CYN) \n\n			compiled by $(USER)\n\n  $(RESET)\n$(L)
+# getting object files name from source files ( in Settings.mk )
+OBJS	=	$(SRCS:.cpp=.o)
 
 $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) -I/usr/local/include -lraylib -lGL -lm -lrt -lX11 $(RENDER_DIR)$(RENDER_LIB) C_tools/C_tools.a -o $(NAME)
 #                                               -lraylib -lGL -lm -lrt -lX11
 
-render:
-	@printf $(L)$(GRN)making $(RENDER_LIB)$(WHT)\n$(L)
-	@make -s -C $(RENDER_DIR)
-	@printf $(L)$(GRN)render done$(WHT)\n$(L)
-
-mem: all
-	valgrind --leak-check=full --show-leak-kinds=all --trace-children=yes --track-fds=yes --suppressions=/tmp/supp.txt ./minishell
-
 #https://github.com/sm222/C_tools
+
+# ======== CORE COMMANDS ======== #
+
+compile: render $(NAME)
+	@printf $(L)$(CYN)\n\n		# $(NAME) compiled by $(USER) #\n\n$(RESET)\n$(L)
 
 # Removes objects
 clean:
@@ -66,12 +51,26 @@ fclean: clean
 	@make -C $(RENDER_DIR) fclean
 	@printf $(L)$(GRN)clean all$(RESET)\n$(L)
 
-run: all
+mc: compile clean
+
+re: fclean compile
+
+run: mc
 	@./$(NAME)
 
-mc: all clean
+rerun: fclean run
 
-re: fclean all
+.PHONEY: all compile clean fclean mc re run rerun
 
+# ======== EXTRA COMMANDS ======== #
 
-.PHONY: all mc re fclean clean mem render
+.PHONEY += render mem
+
+render:
+	@printf $(L)$(GRN)making $(RENDER_LIB)$(WHT)\n$(L)
+	@make -s -C $(RENDER_DIR)
+	@printf $(L)$(GRN)render done$(WHT)\n$(L)
+
+mem: compile
+	valgrind --leak-check=full --show-leak-kinds=all --trace-children=yes --track-fds=yes --suppressions=/tmp/supp.txt ./minishell
+
