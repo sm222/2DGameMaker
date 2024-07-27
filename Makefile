@@ -31,21 +31,22 @@ OBJS	=	$(SRCS:.c=.o)
 $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) -I/usr/local/include -lraylib -lGL -lm -lrt -lX11 $(RENDER_DIR)$(RENDER_LIB) C_tools/C_tools.a -o $(NAME)
 #                                               -lraylib -lGL -lm -lrt -lX11
-
 #https://github.com/sm222/C_tools
+
+
 
 # ======== CORE COMMANDS ======== #
 
 compile: render $(NAME)
 	@printf $(L)$(CYN)\n\n		# $(NAME) compiled by $(USER) #\n\n$(RESET)\n$(L)
 
-# Removes objects
+# removes objects
 clean:
 	@$(RM) $(OBJS)
 	@make -C $(RENDER_DIR) clean
 	@printf $(L)$(GRN)cleaned every *.o$(RESET)\n$(L)
 
-# Removes objects and executables
+# removes objects and executables
 fclean: clean
 	@$(RM) $(NAME)
 	@make -C $(RENDER_DIR) fclean
