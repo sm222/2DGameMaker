@@ -26,7 +26,7 @@ CPY		=	cp -f
 MDR		=	mkdir -p
 
 # getting object files name from source files ( in Settings.mk )
-OBJS	=	$(SRCS:.cpp=.o)
+OBJS	=	$(SRCS:.c=.o)
 
 $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) -I/usr/local/include -lraylib -lGL -lm -lrt -lX11 $(RENDER_DIR)$(RENDER_LIB) C_tools/C_tools.a -o $(NAME)
@@ -43,13 +43,13 @@ compile: render $(NAME)
 clean:
 	@$(RM) $(OBJS)
 	@make -C $(RENDER_DIR) clean
-	@printf $(L)$(GRN)clean *.o$(RESET)\n$(L)
+	@printf $(L)$(GRN)cleaned every *.o$(RESET)\n$(L)
 
 # Removes objects and executables
 fclean: clean
 	@$(RM) $(NAME)
 	@make -C $(RENDER_DIR) fclean
-	@printf $(L)$(GRN)clean all$(RESET)\n$(L)
+	@printf $(L)$(GRN)cleaned everything $(RESET)\n$(L)
 
 mc: compile clean
 

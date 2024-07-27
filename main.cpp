@@ -33,11 +33,15 @@ static void end(void) {
 }
 
 int main(void) {
+	(void)debug();
+
   start();
   while (!WindowShouldClose()) {
+
   /*
     > code here <
   */
+
   }
   end();
 }
