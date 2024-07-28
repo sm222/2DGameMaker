@@ -26,7 +26,7 @@ static void dfps(int ofset_x, int ofset_y ) {
       c.r = 255;
       c.g = g;
     }
-    for (short j = 0; j < 10; j++){
+    for (short j = 0; j < 50; j++){
       DrawPixel(ofset_x + i, (array[i] * -1) + ofset_y + j, c);
     }
     array[i] = array[i + 1];
