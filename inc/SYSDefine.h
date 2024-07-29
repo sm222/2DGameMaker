@@ -41,6 +41,27 @@
 # define PROJECT_H    1000
 # define PROJECT_FPS  60
 
+# ifndef GAMECOLORS
+#  define GAMECOLORS
+#  define G_START        "\001" //*start code
+#  define G_END          "\002" //*end   code
+#  define G_RED         G_START "\e[31m"         G_END
+#  define G_GRN         G_START "\e[32m"         G_END
+#  define G_YEL         G_START "\e[33m"         G_END
+#  define G_BLU         G_START "\e[34m"         G_END
+#  define G_MAG         G_START "\e[35m"         G_END
+#  define G_CYN         G_START "\e[36m"         G_END
+#  define G_WHT         G_START "\e[37m"         G_END
+#  define G_ORG         G_START "\e[38;5;202m"   G_END
+#  define G_PIK         G_START "\e[38;5;176m"   G_END
+#  define G_TOX         G_START "\e[38;5;51m"    G_END
+#  define G_RESET       G_START "\e[0m\022"      G_END
+#  define G_CLE         G_START "\e[1;1H\x1b[2J" G_END
+#  define G_GIT         G_START "\e[38;5;82m"    G_END
+#  define G_GIT_B       G_START "\e[38;5;94m"    G_END
+#  define G_UNDERLINE   G_START "\e[4m"          G_END
+#  define G_BOLD        G_START "\e[1m"          G_END
+# endif
 
 typedef enum DEV_LV {
     none__,

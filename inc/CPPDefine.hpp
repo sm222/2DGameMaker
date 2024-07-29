@@ -11,6 +11,8 @@ extern "C" {
 
 using std::string;
 using std::map;
+using std::vector;
+
 
 #define Cams    map<string, Camera2D>
 
