@@ -9,6 +9,7 @@ NAME		=	game_name
 SRCS		= engine/Debug.cpp \
 					engine/Core.cpp \
 					engine/Engine.cpp \
+					engine/EngineSteps.cpp \
 					engine/groups/GroupBasic.cpp \
 					engine/objects/ObjectBasic.cpp \
 					engine/scripts/ScriptBasic.cpp \

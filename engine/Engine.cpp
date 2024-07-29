@@ -45,9 +45,16 @@ EngineState	Engine::initialize( int argc, char **argv )
 	if ( argc != 2 )
 	{
 		PRINT_ERROR( string( "Usage: ") + argv[0] + string( MSG_ERROR_WRONG_ARGS ) );
-		return E_STATE_WRONG;
+		return this->State( E_STATE_WRONG );
 	}
 
 	PRINT_DEBUG( "Engine initialized" );
-	return E_STATE_RUNNING;
+	return this->State( E_STATE_RUNNING );
+}
+
+EngineState Engine::shutdown()
+{
+	PRINT_DEBUG( "Engine shutting down" );
+;
+	return this->State( E_STATE_SHUTDOWN );
 }

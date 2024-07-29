@@ -12,7 +12,7 @@ EngineState	Engine::stepGame()
 	this->stepCount++;
 
 	PRINT_DEBUG( "Ending step" );
-	return E_STATE_RUNNING;
+	return this->State( E_STATE_RUNNING );
 }
 
 EngineState	Engine::stepRender()
