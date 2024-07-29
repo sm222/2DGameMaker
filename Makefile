@@ -20,7 +20,6 @@ ifeq ($(shell test -d raylib; echo "$$?"), 0)
 endif
 
 # shortcuts
-CC		=	gcc
 RM		=	rm -f
 CPY		=	cp -f
 MDR		=	mkdir -p

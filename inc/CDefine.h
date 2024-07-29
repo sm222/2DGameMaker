@@ -7,6 +7,7 @@
 
 // C - defines
 # include "CType.h"
+# include "Messages.h"
 //
 
 # define MAX_CANVAS  10
