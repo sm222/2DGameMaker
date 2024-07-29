@@ -4,8 +4,8 @@
 *.tmp
 
 # Project
-./C_tools
-./Raylib
+C_tools**
+raylib**
 
 # Prerequisites
 *.d
