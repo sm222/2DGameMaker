@@ -3,6 +3,10 @@
 *.vscode
 *.tmp
 
+# Project
+./C_tools
+./Raylib
+
 # Prerequisites
 *.d
 
