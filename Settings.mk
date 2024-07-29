@@ -2,7 +2,7 @@
 # ====== PROJECT SETTINGS ====== #
 
 # executable name
-NAME			=	test_game
+NAME			=	game_name
 
 
 # source files
