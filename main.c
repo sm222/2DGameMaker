@@ -72,8 +72,8 @@ int main() {
   AddToCanvas(&test, 1, &canvas->_Game);
   AddToCanvas(&test, 0, &canvas->_Game);
   while (!WindowShouldClose()) {
+    TIME_START;
     BeginDrawing();
-    //TIME_START;
     debug();
     ClearBackground(BLACK);
     editCord(&x, &y);
@@ -83,7 +83,7 @@ int main() {
     dfps(x, y);
     Render(canvas);
     EndDrawing();
-    //LOG_MSG(TIME_STOP);
+    LOG_MSG(TIME_STOP);
   }
   FreeCanvas(&canvas);
   CloseWindow();

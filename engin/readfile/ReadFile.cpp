@@ -26,13 +26,12 @@ _Type(0), _FileName(FileName ? FileName : "") {
   string str;
   while (getline(File, str)) {
     if (!str.empty()) {
-      std::cout << str << std::endl;
       _FileData.push_back(str);
     }
   }
   File.close();
   if (!FindHeader(_FileData)) {
-    ShowError(_FileData, 2, 2);
+    ShowError(_FileData[_line_err], _line_err, _err_i);
     throw std::invalid_argument("invalid header");
   }
 }
@@ -68,25 +67,28 @@ bool  ReadFile::FindHeader(vector<string> file) {
     _FileStart = line  + 1;
     return true;
   }
+  _line_err = line;
+  _err_i = i;
   return false;
 }
 
-void  ReadFile::ShowError(vector<string> data, const size_t line, const size_t i) {
+void  ReadFile::ShowError(string data, const size_t line, const size_t i, bool start) {
   string err(G_RED G_BOLD);
   for (size_t j = 0; j < i; j++) {
     err += ' ';
   }
-  size_t len = findLenWord(data[line].c_str() + i, data[line].length());
-  err += '^';
+  size_t len = findLenWord(data.c_str() + i, data.length());
+  if (start)
+    err += '^';
   for (size_t j = 0; j < len - 1; j++) {
     err += '~';
   }
-  
+  if (!start)
+    err += '^';
   err += G_RESET;
-  std::cout << err << std::endl;
-  (void)data;
-  (void)line;
-  (void)i;
+  std::cout << _FileName << ":" << line + 1 << \
+  ":" << _err_i + 1 << std::endl << data << \
+  std::endl << err << std::endl;
 }
 
 ReadFile::~ReadFile() {

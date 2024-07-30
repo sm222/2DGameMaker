@@ -30,13 +30,14 @@ class ReadFile {
     ~ReadFile();
   private:
     bool  FindHeader(vector<string> file);
-    void  ShowError(vector<string> data, const size_t line, const size_t i);
+    void  ShowError(string data, const size_t line, const size_t i,  bool start = true);
     //    |
     int               _Type;
     const string      _FileName;
     vector<string>    _FileData;
     size_t            _FileStart;
     unsigned short    _Depth;
+    size_t            _line_err, _err_i;
 };
 
 #endif // READFILE_HPP_

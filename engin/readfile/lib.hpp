@@ -6,7 +6,8 @@
 
 const char* const cmd[] = {
   "Room",
-  ".",
+  ".add",
+  ".rm,"
 
 };
 
