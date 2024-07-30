@@ -2,7 +2,7 @@
 #ifndef GROUPBASIC_HPP_
 # define GROUPBASIC_HPP_
 
-#	include "../../inc/CPPDefine.hpp"
+#	include "../core.hpp"
 
 class ObjectBasic;
 
@@ -28,7 +28,7 @@ class GroupBasic {
 		vector<ObjectBasic*>	*getMembers();
 
 		void	setId( id_t id );
-		void	setName( std::string name );
+		void	setName( string name );
 		void	setOwner( ObjectBasic *owner );
 
 		//	Methods

@@ -2,7 +2,7 @@
 #ifndef OBJECTBASIC_HPP_
 # define OBJECTBASIC_HPP_
 
-#	include "../../inc/CPPDefine.hpp"
+#	include "../core.hpp"
 
 class GroupBasic;
 
@@ -37,8 +37,8 @@ class ObjectBasic {
 		GroupBasic	*getSiblings(); // = getParent()->getChildren() minus yourself
 
 		void	setId( id_t id );
-		void	setName( std::string name );
-		void	setType( std::string type );
+		void	setName( string name );
+		void	setType( string type );
 
 		void	setParent( ObjectBasic *parent );
 

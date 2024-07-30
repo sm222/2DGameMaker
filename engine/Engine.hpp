@@ -1,22 +1,16 @@
 #ifndef ENGINE_HPP_
 # define ENGINE_HPP_
 
-# include "../inc/Messages.h"
-# include "Debug.hpp"
-# include <iostream>
-
-using std::string;
+# include "core.hpp"
 
 typedef enum
 {
-	E_STATE_WRONG					= -1,
-	E_STATE_NONE					= 0,
-	E_STATE_INITIALIZING,
+	E_STATE_WRONG				= -1,
+	E_STATE_STARTING		= 0,
 	E_STATE_PAUSED,
 	E_STATE_RUNNING,
-	E_STATE_SHUTDOWN
+	E_STATE_CLOSING
 }					EngineState;
-
 
 class Engine{
 //	The building blocks of any game
@@ -27,17 +21,18 @@ class Engine{
 		string				engineVersion;
 		long					stepCount;
 
-		//	Methods
+		//	Step Methods
 		EngineState stepRender();
 		EngineState stepInputs();
 		EngineState stepPhysic();
 		EngineState stepScript();
 
+		//	Accessors
 		string	GameName();
-		string	GameName( const std::string setName );
+		string	GameName( const string setName );
 
 		string	Version();
-		string	Version( const std::string setVersion );
+		string	Version( const string setVersion );
 
 	public:
 		Engine();
@@ -47,10 +42,14 @@ class Engine{
 		EngineState	State();
 		EngineState	State( EngineState setState );
 
-		//	Methods
+		//	State Methods
 		EngineState	initialize( int argc, char **argv );
-		EngineState	stepGame();
 		EngineState	shutdown();
+
+		EngineState	stepGame();
+
+		EngineState	pause();
+		EngineState	resume();
 
 };
 

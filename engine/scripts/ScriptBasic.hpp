@@ -2,7 +2,7 @@
 #ifndef SCRIPTBASIC_HPP_
 # define SCRIPTBASIC_HPP_
 
-#	include "../../inc/CPPDefine.hpp"
+#	include "../core.hpp"
 
 class ObjectBasic;
 

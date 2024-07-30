@@ -6,6 +6,7 @@ extern "C" {
 }
 
 // C++ - defines
+# include <iostream>
 # include <string>
 # include <vector>
 # include <map>
@@ -13,6 +14,9 @@ extern "C" {
 using std::string;
 using std::vector;
 using std::map;
+
+using std::cout;
+using std::endl;
 
 # define Cams	map<string, Camera2D>
 

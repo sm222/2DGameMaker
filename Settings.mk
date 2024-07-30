@@ -6,10 +6,8 @@ NAME		=	game_name
 
 
 # source files
-SRCS		= engine/Debug.cpp \
-					engine/Core.cpp \
+SRCS		= engine/core.cpp \
 					engine/Engine.cpp \
-					engine/EngineSteps.cpp \
 					engine/groups/GroupBasic.cpp \
 					engine/objects/ObjectBasic.cpp \
 					engine/scripts/ScriptBasic.cpp \

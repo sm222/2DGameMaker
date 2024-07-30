@@ -1,13 +1,14 @@
 #ifndef GM_CDEFINE_H
 # define GM_CDEFINE_H
 
+# include "../C_tools/inc/C_tool.h"
 # include "SYSDefine.h"
+# include "Messages.h"
 # include <unistd.h>
 # include <stdio.h>
 
 // C - defines
 # include "CType.h"
-# include "Messages.h"
 //
 
 # define MAX_CANVAS  10
