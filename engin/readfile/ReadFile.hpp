@@ -20,7 +20,6 @@
 # include <vector>
 # include <cstring>
 
-
 # include "lib.hpp"
 # include "../../inc/CPPDefine.hpp"
 
@@ -30,7 +29,8 @@ class ReadFile {
     ~ReadFile();
   private:
     bool  FindHeader(vector<string> file);
-    void  ShowError(string data, const size_t line, const size_t i,  bool start = true);
+    void  ShowError(const string data, const size_t line, const size_t i,  bool start = true);
+    int   ParseLine(const string s);
     //    |
     int               _Type;
     const string      _FileName;

@@ -1,6 +1,6 @@
 /**
  * @file ReadFile.cpp
- * @author your name 
+ * @author Sm222
  * @brief 
  * @version 0.1
  * @date 2024-07-28
@@ -36,7 +36,7 @@ _Type(0), _FileName(FileName ? FileName : "") {
   }
 }
 
-static bool strIsSpace(string& s) {
+static bool strIsSpace(const string& s) {
   for (size_t i = 0; i < s.length(); i++) {
     if (!isspace(s[i]))
       return false;
@@ -47,48 +47,61 @@ static bool strIsSpace(string& s) {
 static size_t findLenWord(const char* s, size_t len) {
   size_t i = 0;
   while (i < len) {
-    if (!isspace(s[i]))
+    if (!isspace(s[i]) && s[i] != NEWLINE)
       i++;
-    else
+    else {
       break ;
+    }
   }
   return i;
 }
 
-bool  ReadFile::FindHeader(vector<string> file) {
-  size_t  line = 0;
+bool  ReadFile::FindHeader(const vector<string> file) {
+  size_t line = 0;
   size_t i = 0;
-  while (line < file.size() && (file[line].empty() || strIsSpace(file[line]))) {line++;}
+  while (line < file.size() && (file[line].empty() || strIsSpace(file[line]))) {line++;} // skip empty
   while (isspace(file[line][i])) {i++;}
-  const size_t len = findLenWord(file[line].c_str() + i, file[line].length() - i);
-  const size_t len2 = strlen(FILE_HEAD);
-  if (len == len2 && strncmp(file[line].c_str() + i, FILE_HEAD, len2) == 0) {
+  const size_t Linelen = file[line].length();
+  const size_t len = findLenWord(file[line].c_str() + i, Linelen - i);
+  const size_t HeaderLen = strlen(FILE_HEAD);
+  if (len == HeaderLen && strncmp(file[line].c_str() + i, FILE_HEAD, HeaderLen) == 0) {
     _Type = 1;
-    _FileStart = line  + 1;
-    return true;
+    _FileStart = line + 1;
+    i += HeaderLen;
+    _Depth++;
+    while (i < Linelen && isspace(file[line][i])) { i++; }
+    if (i != Linelen && file[line][i] == IN__)
+      return true;
   }
   _line_err = line;
   _err_i = i;
   return false;
 }
 
-void  ReadFile::ShowError(string data, const size_t line, const size_t i, bool start) {
+void  ReadFile::ShowError(const string data, const size_t line, const size_t i, bool start) {
   string err(G_RED G_BOLD);
-  for (size_t j = 0; j < i; j++) {
-    err += ' ';
-  }
-  size_t len = findLenWord(data.c_str() + i, data.length());
+  for (size_t j = 0; j < i; j++) { err += ' '; }
+  size_t len = findLenWord(data.c_str() + i, data.length() - i);
   if (start)
     err += '^';
-  for (size_t j = 0; j < len - 1; j++) {
-    err += '~';
-  }
+  for (size_t j = 0; j < len - 1; j++) { err += '~'; } // ~ add line
   if (!start)
     err += '^';
   err += G_RESET;
   std::cout << _FileName << ":" << line + 1 << \
   ":" << _err_i + 1 << std::endl << data << \
   std::endl << err << std::endl;
+}
+
+int ReadFile::ParseLine(const string s) {
+  size_t  i = 0;
+  if (strIsSpace(s))
+    return 0;
+  const size_t len = s.length();
+  while (i < len && isspace(s[i])) { i++; }
+  if (i == len)
+    return -1;
+  return 0;
 }
 
 ReadFile::~ReadFile() {

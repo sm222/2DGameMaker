@@ -4,11 +4,17 @@
 
 # define FILE_HEAD "#head"
 
+# define NEWLINE '\n'
+
+# define IN__  '{'
+# define OUT__ '}'
+# define SEP__ ':'
+
+
 const char* const cmd[] = {
   "Room",
-  ".add",
-  ".rm,"
-
+  ".add|name",
+  ".rm|name",
 };
 
 

@@ -1,6 +1,6 @@
   
-    
-  #head {
   
-  
+  #head  {
+    int set a
+    Room
 }
